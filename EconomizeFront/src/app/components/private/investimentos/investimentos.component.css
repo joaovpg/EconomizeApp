@@ -1,0 +1,135 @@
+/* Estilização do mês */
+
+.mes {
+    margin-top: 120px;
+    max-width: 1260px;
+}
+
+.mes__control {
+    border: none;
+    background-color: var(--var-branco);
+    font-family: var(--fonte-fred);
+    font-size: 7.2rem;
+    text-align: center;
+    outline: 0;
+    padding: 2.4rem;
+    position: relative;
+    width: 100%;
+}
+
+.mes__control::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background: none;
+    z-index: 1;
+  }
+
+.mes__control:before {
+    color: transparent;
+    display: block;
+    font-family: 'Material Icons';
+    content: 'calendar_today';
+    position: absolute;
+    padding: 3.6rem;
+    top: 0;
+    right: 0;
+    border-radius: 0 5px 5px 0;
+    color: var(--var-preto);
+    cursor: pointer;
+  }
+
+.mes__anterior,
+.mes__seguinte {
+    color: var(--var-preto);
+    font-family: 'Material Icons', sans-serif;
+    font-size: 7.2rem;
+    text-decoration: none;
+    max-width: 50px;
+}
+
+hr {
+    margin-bottom: 2.4rem;
+}
+
+/* Dashboards */
+
+.dashboard__container {
+    max-width: 1260px;
+}
+
+.dashboard {
+    background: var(--var-branco);
+    box-shadow: 0px 5px 5px var(--var-cinza);
+    border-radius: 10px;
+    padding: 2.4rem;
+    padding-bottom: 0;
+    margin-bottom: 2.4rem;
+}
+
+.dashboard__card__titulo {
+    color: var(--var-preto);
+    font-size: 2.4rem;
+    font-family: var(--fonte-fred);
+    text-align: center;
+    margin-bottom: 2.4rem;
+
+}
+
+.dashboard__table {
+    font-size: 1.6rem;
+    font-family: var(--fonte-karla);
+}
+
+.align-right > td{
+    text-align: right;
+}
+
+.dashboard__table__row > th, 
+.dashboard__table__row > td{
+    color: var(--var-preto);
+    padding-bottom: 2.4rem;
+}
+
+.dashboard__table__gastos > th,
+.dashboard__table__gastos > td {
+    padding: 1.2rem 0;
+}
+
+.dashboard__table__titulo > th {
+    color: var(--var-preto);
+    font-size: 2.4rem;
+    font-family: var(--fonte-fred);
+    font-weight: normal;
+}
+
+.dashboard__table__icons > a{
+    color: var(--var-preto);
+    font-size: 1.6rem;
+    font-family: 'Material Icons', sans-serif;
+    text-decoration: none;
+}
+
+.table__maxHeight {
+    height: 527px;
+}
+
+/* Paineis do dashboard */
+
+.dashboard__titulo {
+    color: var(--preto);
+    font-family: var(--fonte-fred);
+    font-size: 7.2rem;
+    padding-bottom: 2.4rem;
+    text-align: center;
+}
+
+/* Paineis do dashboard */
+
+.dashboard__paineis {
+    max-width: 1260px;
+}
+
+/* Gráficos */
+
+.dashboard__charts {
+    padding-bottom: 2.4rem;
+}

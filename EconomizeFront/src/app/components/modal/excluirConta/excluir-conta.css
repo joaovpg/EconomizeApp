@@ -1,0 +1,81 @@
+.modal-container {
+    background-color: var(--var-branco);
+}
+
+.close {
+    font-size: 2.4rem;
+    background-color: var(--var-branco);
+    border: none;
+    outline: 0;
+}
+
+.close > span:hover {    
+    color: var(--var-vermelho);
+    transition: all 200ms;
+}
+
+.modal-title {
+    color: var(--var-preto);
+    font-size: 2.4rem;
+    font-family: var(--fonte-fred);
+    padding: 0.8rem 0;
+}
+
+.modal-p {
+    color: var(--var-preto);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    padding: 0.8rem 0;
+}
+
+/* Btn's ativar e cancelar */
+
+.modal-btn-excluir,
+.modal-btn-cancelar{
+    font-size: 1.6rem;
+    font-family: var(--fonte-karla);
+    padding: 1.6rem 2.4rem;
+    border: none;
+    border-radius: 40px;
+}
+
+.modal-btn-excluir:hover{
+    opacity: 0.8;
+    transition: all 150ms;
+}
+
+.modal-btn-cancelar:hover{
+    color: var(--var-vermelho);
+    border-color: var(--var-vermelho);
+    transition: all 150ms;
+}
+
+.modal-btn-excluir{
+    color: var(--var-branco);
+    background-color: var(--var-vermelho);
+    border: solid 1px var(--var-vermelho);
+}
+.modal-btn-cancelar{
+    box-sizing: border-box;
+    color: var(--var-preto);
+    background-color: var(--var-branco);
+    border: solid 1px var(--var-preto);
+}
+
+/* Btn que será mostrado para o usuário */
+.modal-btn-ativar {
+    color: var(--var-branco);
+    border: none;
+    border-radius: 40px;
+    background-color: var(--var-vermelho);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    margin-top: 2.4rem;
+    padding: 1.6rem;
+    width: 100%;
+}
+
+.modal-btn-ativar:hover {
+    opacity: 0.8;
+    transition: all 150ms;
+}

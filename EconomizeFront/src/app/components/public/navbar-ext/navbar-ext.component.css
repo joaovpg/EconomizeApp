@@ -1,0 +1,36 @@
+.menu {
+    width: 100wv;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__img{
+    margin: 2.4rem;
+}
+
+.menu__lista {
+    list-style: none;
+    margin-right: 2.4rem; 
+    
+}
+
+.menu__lista__items {
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-size: 1.6rem;
+    display: inline;
+    padding: 1.2rem;
+}
+
+.menu__lista__items > a {
+    text-decoration: none;
+    color: var(--var-preto);
+}
+
+.menu__lista__items:hover{
+    cursor: pointer;
+    border-bottom: solid 5px var(--var-azul);
+    transition: ease-out 0.1s;
+    color: var(--var-azul);
+}

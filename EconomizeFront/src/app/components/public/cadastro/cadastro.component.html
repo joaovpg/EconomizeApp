@@ -1,0 +1,41 @@
+<app-navbar-ext></app-navbar-ext>
+<div class="container">
+    <div class="row justify-content-center cadastro">
+        <div class="col-md-10">
+            <h1 class="cadastro__texto">Comece agora a transformar sua vida financeira</h1>
+        </div>
+    </div>
+    <div class="row justify-content-between formulario">
+        <div class="col-md-5 form__cadastro">
+            <h1 class="form__cadastro__titulo">Crie sua conta</h1>
+            <div class="icone__cadastro">
+                <fa-icon [icon]="faGooglePlus"></fa-icon>
+                <fa-icon [icon]="faFacebook"></fa-icon>
+            </div>
+            <form action="">
+                <div class="form__group">
+                    <input class="form__control" type="text" placeholder="Nome completo">
+                    <label class="form__label">Nome completo</label>
+                </div>
+                <div class="form__group">
+                    <input class="form__control" type="email" placeholder="E-mail">
+                    <label class="form__label">E-mail</label>
+                </div>
+                <div class="form__group">
+                    <input class="form__control" type="password" placeholder="Senha">
+                    <label class="form__label">Senha</label>
+                </div>
+                <div class="form__group">
+                    <input class="form__control" type="password" placeholder="Confirme sua senha">
+                    <label class="form__label">Confirme sua senha</label>
+                </div>
+                <div class="form__cadastro__action">
+                    <input class="cadastro__botao" type="button" value="Cadastrar">
+                    <a class="form__texto" href="">Já possui uma conta? Faça seu login.</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-7 img__cadastro"></div>
+    </div>
+</div>
+<app-rodape></app-rodape>

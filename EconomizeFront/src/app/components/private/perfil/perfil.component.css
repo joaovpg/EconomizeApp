@@ -1,0 +1,155 @@
+/* Container */
+.container {
+    max-width: 1260px;
+    margin-top: 12rem;
+}
+
+/* Div perfil */
+
+.area__perfil {
+    display: flex;
+    flex-direction: row;
+}
+.img__perfil {
+    border: 100%;
+}
+
+.texto__perfil {
+    margin-left: 2.4rem;
+}
+
+.paragrafo__perfil {
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    margin-top: 0.8rem;
+    max-width: 300px;
+}
+
+
+/* Divs, inputs e titulo - dados */
+
+.titulo__perfil, .titulo__dados, .titulo__senha, .titulo__excluir {
+    color: var(--var-preto);
+    font-family: var(--fonte-fred);
+    font-size: 3.8rem;
+}
+
+
+.form__group {
+    color: var(--var-preto);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+}
+
+.form__control {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid var(--var-preto);
+    background-color: var(--var-branco);
+    box-sizing: border-box;
+    margin-top: 2.4rem;
+    outline: none;
+    transition: all .5s;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.form__control::placeholder {
+    color: transparent;
+}
+
+.form__control:focus {
+    border-color: var(--var-azul);
+}
+
+.form__control:focus + .form__label,
+.form__control:not(:placeholder-shown) + .form__label {
+    transform: translateY(-2.5em) scale(0.8);
+    color: var(--var-azul);
+    
+}
+
+.form__label {
+    font-size: 1.8rem;
+    opacity: 1;
+    transform: translateY(-1.8em);
+    transform-origin: 0 0;
+    transition: all .3s;
+}
+
+
+
+.botao__dados, .botao__senha, .botao__excluir {
+    border: none;
+    border-radius: 50px;
+    background-color: var(--var-azul);
+    color: var(--var-branco);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    margin-top: 32px;
+    padding: 1.6rem;
+    width: 100%;
+}
+
+
+/* Divs, inputs e titulo - senha */
+
+.senha {
+    margin-top: 40px;
+}
+
+
+.input__senha {
+    margin-top: 35px;
+}
+
+.input__senhaA, .input__senhaN, .input__senhaC {
+    margin-top: 34px;
+    border: 0;
+    border-bottom: 2px solid #254872;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.label__senhaA, .label__senhaN, .label__senhaC {
+    margin-top: 34px;
+    color: #254872;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 16px;
+    cursor: text;
+    box-sizing: border-box;
+}
+
+/* Divs Excluir */
+
+.excluir {
+    margin-top: 40px;
+}
+
+.excluir__paragrafo {
+    font-family: 'Karla', sans-serif;
+    max-width: 403px;
+    margin-top: 24px;
+    font-size: 18px;
+}
+
+.botao__excluir {
+    margin-top: 2.4rem;
+    background-color: var(--var-vermelho);
+    border: none;
+}
+
+/* Ilustração */
+
+.ilustracao__perfil {
+    background-image: url('../../../../assets/img/ilustracao-perfil.png');
+    width: 563px;
+    height: 563px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin-top: 120px;
+}
+

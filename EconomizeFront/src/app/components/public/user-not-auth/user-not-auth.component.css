@@ -1,0 +1,60 @@
+.container__erro{
+    height: calc(100vh - 188px);
+}
+
+.erro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.erro__titulo {
+    color: var(--var-preto);
+    font-family: var(--fonte-fred);
+    font-size: 4.8rem;
+    text-align: center;
+}
+
+.erro__texto {
+    color: var(--var-preto);
+    font-family: var(--fonte-karla);
+    font-size: 2.4rem;
+    text-align: center;
+    margin-top: 4.8rem;
+    width: 444px;
+}
+
+.erro__botao {
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    padding: 1.6rem 0;
+    margin-top: 2.4rem;
+    width: 327px;
+}
+
+.erro__botao > button{
+    color: var(--var-branco);
+    background-color: var(--var-azul);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    padding: 1.6rem 0;
+    width: 327px;
+}
+
+.erro__botao > button:hover{
+    opacity: 0.8;
+    transition: all 100ms;
+}
+
+/* Imagem */
+
+.erro__img {
+    background-image: url(../../../../assets/img/img-robo.png);
+    background-repeat: no-repeat;
+    max-width: 600px;
+    height: 800px;
+}
+

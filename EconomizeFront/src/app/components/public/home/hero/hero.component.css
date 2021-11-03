@@ -1,0 +1,33 @@
+.hero__container {
+    padding: 0;
+}
+
+.hero {
+    margin-top: 12rem;
+    max-width: 1260px;
+    display: flex;
+    align-items: center;
+}
+
+.hero__div {
+    background-image: url('../../../../../assets/img/hero-img.png');
+    background-repeat: no-repeat;
+    max-width: 618px;
+    height: 200px;
+    margin-bottom: 24px;
+}
+
+.hero__div:nth-child(2) {
+    background-position: center;
+}
+
+.hero__div:nth-child(3) {
+    background-position: bottom;
+
+}
+
+.hero__titulo {
+    font-family: var(--fonte-fred);
+    font-size: 9.6rem;
+    color: var(--var-preto);
+}

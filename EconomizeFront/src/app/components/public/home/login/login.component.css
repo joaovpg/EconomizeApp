@@ -1,0 +1,170 @@
+/* Imagem de fundo */
+
+.login__fundo {
+    background-image: url('../../../../../assets/img/login-img.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding: 16rem 0;
+    margin-top: 12rem;
+}
+
+/* Container login */
+
+.login {
+    max-width: 1260px;
+}
+
+/* Banner cadastro */
+
+.login__cadastro {
+    background-color: var(--var-azul);
+    padding: 187px 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__cadastro__titulo {
+    font-family: var(--fonte-fred);
+    font-size: 4.8rem;
+}
+
+.login__cadastro_texto {
+    font-family: var(--fonte-karla);
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 3.2rem;
+}
+
+.login__cadastro__titulo, .login__cadastro_texto {
+    color: var(--var-branco);
+    text-align: center;
+}
+
+.login__cadastro__botao {
+    border: none;
+    background-color: var(--var-branco);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 3.2rem;
+    text-align: center;
+    outline: 0;
+    padding: 0 113px;
+
+}
+
+.login__cadastro__botao:hover {
+    background-color: var(--var-cinza);
+    transition: all 0.2s;
+}
+
+.login__cadastro__botao, .login__cadastro__botao > a {
+    color: var(--var-preto);
+    border-radius: 50px;
+    text-decoration: none;
+    padding: 14px 0;
+    width: 296px;
+
+}
+
+/* Área login */
+
+.login__entrar {
+    align-items: center;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2.4rem;
+}
+
+.login__entrar__img {
+    max-width: 243px;
+    max-height: 178px;
+    min-width: 115px;
+    min-height: 85px;
+}
+
+.login__form{
+    align-items: flex-end;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login__form__label {
+    color: var(--var-preto);
+    font-family: 'Material Icons', sans-serif;
+    font-size: 2.4rem;
+}
+
+.login__form__input {
+    background-color: var(--var-cinza);
+    border: none;
+    color: var(--var-preto);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    font-weight: bold;
+    outline: 0;
+    padding-left: 1.6rem;
+    width: calc(100% - 45px);
+}
+
+.login__email__erro {
+    color: var(--var-vermelho);
+    font-size: 1.4rem;
+    font-family: var(--fonte-karla);
+    padding: 0.8rem 0 0 0;
+}
+
+.login__form__senha, .login__form__email {
+    background-color: var(--var-cinza);
+    border-radius: 5px;
+    margin-top: 2.4rem;
+    padding: 2.4rem;
+    display: flex;
+    width: 100%;
+}
+
+.login__form__botao {
+    border: none;
+    border-radius: 50px;
+    background-color: var(--var-azul);
+    color: var(--var-branco);
+    font-family: 'Karla', sans-serif;
+    font-size: 1.6rem;
+    padding: 1.6rem;
+    width: 190px;
+}
+
+.login__form__botao:hover {
+    background-color: #264a75de;
+    transition: all 0.2s;
+}
+
+.login__form__resetSenha{
+    color: var(--var-preto);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login__form__resetSenha:hover{
+    color: var(--var-vermelho);
+    transition: all 100ms;
+}
+
+.login__form__action {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.4rem;
+    width: 100%;
+
+}

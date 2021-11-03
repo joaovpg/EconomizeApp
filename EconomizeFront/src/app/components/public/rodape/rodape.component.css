@@ -1,0 +1,17 @@
+.rodape {
+    background-color: #CBCBCB;
+    padding: 24px;
+    margin-top: 120px;
+}
+
+.rodape__texto {
+    color: #404040;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+}
+
+.rodape__icone {
+    color: #404040;
+    font-family: 'Material Icons', sans-serif;
+    font-size: 14px;
+}

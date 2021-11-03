@@ -1,0 +1,35 @@
+<div class="login__fundo">
+    <div class="container login__container">
+        <div class="row justify-content-center login">
+            <div class="col-md-6 login__cadastro">
+                <h2 class="login__cadastro__titulo">Ei, não possui uma conta?</h2>
+                <p class="login__cadastro_texto">Deixe o papel e a caneta de lado e comece a anotar suas despesas
+                    conosco.</p>
+                <a href="cadastro"><button class="login__cadastro__botao">Crie sua conta</button></a>
+            </div>
+            <div class="col-md-6 login__entrar">
+                <img class="login__entrar__img" src="../../../../../assets/img/login-logo.png">
+                <form class="login__form">
+                    <div class="login__form__email">
+                        <label class="login__form__label">mail</label>
+                        <input class="login__form__input" type="email" placeholder="E-mail" name="emailControl"
+                            #emailControl="ngModel" [(ngModel)]="email" email required>
+                    </div>
+                    <div class="login__form__senha">
+                        <label class="login__form__label">lock</label>
+                        <input class="login__form__input" type="password" placeholder="Senha" name="senhaControl"
+                            #senhaControl="ngModel" [(ngModel)]="senha" senha required>
+                    </div>
+                    <div *ngIf="emailControl.invalid" class="login__email__erro">
+                        <div *ngIf="emailControl.errors?.required">O e-mail é obrigatório</div>
+                        <div *ngIf="emailControl.errors?.email">O e-mail é inválido</div>
+                    </div>
+                    <div class="login__form__action">
+                        <ngbd-modal-email class="login__form__resetSenha"></ngbd-modal-email>
+                        <input class="login__form__botao" type="button" value="Entrar" (click)="logar()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

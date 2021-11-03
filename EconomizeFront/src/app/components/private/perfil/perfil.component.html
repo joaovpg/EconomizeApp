@@ -1,0 +1,59 @@
+<app-navbar-int></app-navbar-int>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-6">
+      <div class="area__perfil">
+        <div class="">
+          <img class="img__perfil" src="../../assets/img/img-perfil.png" width="165px" height="165px">
+        </div>
+        <div class="texto__perfil">
+          <h1 class="titulo__perfil">Olá, João</h1>
+          <p class="paragrafo__perfil">Mude seu nome, altere sua senha ou exclua sua conta</p>
+        </div>
+      </div>
+      <div class="col-md-6 ilustracao__perfil"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="dados">
+        <h1 class="titulo__dados">Meus dados</h1>
+        <form action="">
+          <div class="form__group">
+            <input class="form__control" type="text" placeholder="Nome" name="nome" required>
+            <label class="form__label" for="nome" required>Nome completo</label>
+          </div>
+          <div class="form__group">
+            <input class="form__control" type="email" placeholder="E-mail" name="email" required>
+            <label class="form__label" for="email" required>E-mail</label>
+          </div>
+          <input class="botao__dados" type="button" value="Salvar">
+        </form>
+      </div>
+      <div class="senha">
+        <h1 class="titulo__senha">Altere sua senha</h1>
+        <form action="">
+          <div class="form__group">
+            <input class="form__control" type="text" placeholder="Senha Atual" required>
+            <label class="form__label">Senha atual</label>
+          </div>
+          <div class="form__group">
+            <input class="form__control" type="password" placeholder="Nova senha" required>
+            <label class="form__label">Nova senha</label>
+          </div>
+          <div class="form__group">
+            <input class="form__control" type="password" placeholder="Confirmação da senha" required>
+            <label class="form__label">Confirmação da senha</label>
+          </div>
+          <input class="botao__senha" type="button" value="Alterar senha">
+        </form>
+      </div>
+      <div class="excluir">
+        <form action="">
+          <h1 class="titulo__excluir">Exclua sua conta</h1>
+          <p class="excluir__paragrafo">Cansado de economizar e deixar suas contas em dia? Exclua sua conta</p>
+          <ngbd-modal-excluir-conta></ngbd-modal-excluir-conta>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-rodape></app-rodape>

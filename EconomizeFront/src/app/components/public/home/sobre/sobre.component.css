@@ -1,0 +1,95 @@
+.sobre {
+    margin-top: 12rem;
+    max-width: 1260px;
+}
+.sobre__titulo {
+    color: var(--var-preto);
+    font-family: var(--fonte-fred);
+    font-size: 7.2rem;
+    text-align: center;
+}
+
+.container__mensagem {
+    margin-top: 2.4rem;
+}
+
+.sobre__mensagem {
+    margin-top: 2.4rem;
+}
+.sobre__mensagem__pessoa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sobre__mensagem__img {
+    border-radius: 100%;
+}
+
+.sobre__mensagem__icons{
+    margin-top: 1.6rem;
+}
+
+.sobre__mensagem__icone, .sobre__mensagem__icone > fa-icon {
+    font-size: 2.1rem;
+    color: var(--var-preto);
+}
+
+.sobre__mensagem__icone > fa-icon {
+    padding: 0 0.4rem;
+}
+
+
+.sobre__mensagem__texto {
+    border-radius: 0 50px 50px;
+    background-color: var(--var-azul);
+    color: var(--var-branco);
+    font-family: 'Karla', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    padding: 2.4rem;
+}
+
+.sobre__mensagem__texto--bordaDireita {
+    border-radius: 50px 0 50px 50px;
+}
+
+.container__seta-direita {
+    position: relative;
+}
+
+.seta-direita:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    top: 0;
+    right: -17px;
+  
+    border-top: 0px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-left: 20px solid #254872; 
+  }
+
+.container__seta-esquerda {
+    position: relative;
+}
+
+.seta-esquerda:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    top: 0;
+    left: -5px;
+  
+    border-top: 0px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-right: 20px solid var(--var-azul); 
+  }

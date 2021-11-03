@@ -1,0 +1,21 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Redefinir senha</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <label class="modal-label">Iremos encaminhar o link de reset para o seu e-mail</label>
+                <input placeholder="Digite o seu e-mail" type="email" class="modal-control">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="modal-btn" (click)="c('Save click')">Enviar</button>
+        </div>
+    </div>
+</ng-template>
+
+<p (click)="open(content)">Esqueceu sua senha?</p>
