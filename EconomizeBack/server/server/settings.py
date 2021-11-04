@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Define o banco para autenticação
+AUTH_USER_MODEL = 'authentication.User'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'authentication',
-    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -85,6 +88,12 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+}
+
+# Configuração da APIREST
+
+REST_FRAMEWORK = {
+
 }
 
 
