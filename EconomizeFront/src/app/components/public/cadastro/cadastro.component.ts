@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faGooglePlus } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { UserModel } from 'src/app/models/user.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,12 +11,42 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+  // Icones do fontawesome
   faGooglePlus = faGooglePlus;
   faFacebook = faFacebook;
 
-  constructor() { }
+  // Modelo do usuário
+  usuario: UserModel = new UserModel();
+  // Captura a confirmação da senha
+  passwordValidate: any;
+
+  constructor(private auth: AuthenticationService, private route: Router) { }
 
   ngOnInit(): void {
   }
+
+  createUser() {
+    console.log(this.usuario);
+    // Confere se as senhas são iguais
+    if (this.passwordValidate == this.usuario.password) {
+
+      // Envia a requisição POST através do método createUser
+      this.auth.createUser(this.usuario).subscribe(() => {
+        alert("Usuário cadastrado com sucesso");
+        this.voltar();
+      }, err => {
+        console.log("Erro ao cadastrar: ", err)
+      })
+
+    } else {
+      alert("Senhas não conferem");
+    }
+  }
+
+  voltar() {
+    return this.route.navigate(['/home']);
+  }
+
+
 
 }

@@ -16,7 +16,7 @@ class UserManager(BaseUserManager):
             raise TypeError('Usuários devem ter um e-mail')
 
         # Define uma senha para o usuário
-        user = self.model(name=name, email=self.normalize_email(useremail))
+        user = self.model(name=name, useremail=self.normalize_email(useremail))
         user.set_password(password)
         user.save()
         return user

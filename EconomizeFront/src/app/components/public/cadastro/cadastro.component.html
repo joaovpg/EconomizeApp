@@ -12,25 +12,29 @@
                 <fa-icon [icon]="faGooglePlus"></fa-icon>
                 <fa-icon [icon]="faFacebook"></fa-icon>
             </div>
-            <form action="">
+            <form>
                 <div class="form__group">
-                    <input class="form__control" type="text" placeholder="Nome completo">
-                    <label class="form__label">Nome completo</label>
+                    <input class="form__control" type="text" placeholder="Nome completo" name="name"
+                        [(ngModel)]="usuario.name">
+                    <label class="form__label" for="name">Nome completo</label>
                 </div>
                 <div class="form__group">
-                    <input class="form__control" type="email" placeholder="E-mail">
-                    <label class="form__label">E-mail</label>
+                    <input class="form__control" type="email" placeholder="E-mail" name="useremail"
+                        [(ngModel)]="usuario.useremail">
+                    <label class="form__label" for="useremail">E-mail</label>
                 </div>
                 <div class="form__group">
-                    <input class="form__control" type="password" placeholder="Senha">
-                    <label class="form__label">Senha</label>
+                    <input class="form__control" type="password" placeholder="Senha" name="password"
+                        [(ngModel)]="usuario.password">
+                    <label class="form__label" for="password">Senha</label>
                 </div>
                 <div class="form__group">
-                    <input class="form__control" type="password" placeholder="Confirme sua senha">
-                    <label class="form__label">Confirme sua senha</label>
+                    <input class="form__control" type="password" placeholder="Confirme sua senha"
+                        name="passwordValidate" [(ngModel)]="passwordValidate">
+                    <label class="form__label" for="passwordValidate">Confirme sua senha</label>
                 </div>
                 <div class="form__cadastro__action">
-                    <input class="cadastro__botao" type="button" value="Cadastrar">
+                    <input class="cadastro__botao" type="button" value="Cadastrar" (click)="createUser()">
                     <a class="form__texto" href="">Já possui uma conta? Faça seu login.</a>
                 </div>
             </form>

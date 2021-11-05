@@ -24,6 +24,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthguardService } from './services/authguard.service';
 import { UserNotAuthComponent } from './components/public/user-not-auth/user-not-auth.component';
@@ -71,9 +72,14 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     AngularFirestoreModule,
     AngularFireAuthModule,
     ChartModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
-  providers: [AuthguardService, NgbModalConfig, NgbModal],
+  providers: [
+    AuthguardService,
+    NgbModalConfig,
+    NgbModal,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
