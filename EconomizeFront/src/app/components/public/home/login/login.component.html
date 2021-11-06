@@ -13,12 +13,12 @@
                     <div class="login__form__email">
                         <label class="login__form__label">mail</label>
                         <input class="login__form__input" type="email" placeholder="E-mail" name="emailControl"
-                            #emailControl="ngModel" [(ngModel)]="email" email required>
+                            #emailControl="ngModel" [(ngModel)]="user.useremail" email required>
                     </div>
                     <div class="login__form__senha">
                         <label class="login__form__label">lock</label>
                         <input class="login__form__input" type="password" placeholder="Senha" name="senhaControl"
-                            #senhaControl="ngModel" [(ngModel)]="senha" senha required>
+                            #senhaControl="ngModel" [(ngModel)]="user.password" senha required>
                     </div>
                     <div *ngIf="emailControl.invalid" class="login__email__erro">
                         <div *ngIf="emailControl.errors?.required">O e-mail é obrigatório</div>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="login__form__action">
                         <ngbd-modal-email class="login__form__resetSenha"></ngbd-modal-email>
-                        <input class="login__form__botao" type="button" value="Entrar" (click)="logar()">
+                        <input class="login__form__botao" type="button" value="Entrar" (click)="requestLogin()">
                     </div>
                 </form>
             </div>

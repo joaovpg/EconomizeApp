@@ -3,25 +3,25 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http'
-import { UserModel } from '../models/user.model';
+import { UserModel, UserLogin } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  api = "http://127.0.0.1:8000/auth/create-user/";
+  api = "http://127.0.0.1:8000/auth/";
   user: Observable<firebase.User | null>
 
   constructor(private auth: AngularFireAuth, private http: HttpClient) {
     this.user = this.auth.authState;
   }
 
-  login(email: string, senha: string): Promise<firebase.auth.UserCredential> {
-    return this.auth.signInWithEmailAndPassword(email, senha);
+  loginUser(userLogin: UserLogin): Observable<any> {
+    return this.http.post(this.api + 'login/', userLogin);
   }
 
-  createUser(usuario: UserModel): Observable<any> {
-    return this.http.post(this.api, usuario);
+  createUser(user: UserModel): Observable<any> {
+    return this.http.post(this.api + 'create-user/', user);
   }
 
   logout(): Promise<void> {

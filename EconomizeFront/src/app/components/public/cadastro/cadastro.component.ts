@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit {
   faFacebook = faFacebook;
 
   // Modelo do usuário
-  usuario: UserModel = new UserModel();
+  user: UserModel = new UserModel();
   // Captura a confirmação da senha
   passwordValidate: any;
 
@@ -26,12 +26,12 @@ export class CadastroComponent implements OnInit {
   }
 
   createUser() {
-    console.log(this.usuario);
+    console.log(this.user);
     // Confere se as senhas são iguais
-    if (this.passwordValidate == this.usuario.password) {
+    if (this.passwordValidate == this.user.password) {
 
       // Envia a requisição POST através do método createUser
-      this.auth.createUser(this.usuario).subscribe(() => {
+      this.auth.createUser(this.user).subscribe(() => {
         alert("Usuário cadastrado com sucesso");
         this.voltar();
       }, err => {

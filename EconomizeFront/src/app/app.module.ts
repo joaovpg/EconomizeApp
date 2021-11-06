@@ -26,7 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AuthguardService } from './services/authguard.service';
+// import { AuthguardService } from './services/authguard.service';
 import { UserNotAuthComponent } from './components/public/user-not-auth/user-not-auth.component';
 import { ChartModule } from 'primeng/chart';
 import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -76,7 +76,7 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     HttpClientModule,
   ],
   providers: [
-    AuthguardService,
+    // AuthguardService,
     NgbModalConfig,
     NgbModal,
   ],
