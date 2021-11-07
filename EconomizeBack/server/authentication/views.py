@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import generics, status, views
+from rest_framework import generics, status, views, permissions
 from rest_framework.response import Response
-from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer
+from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer, UserDetailSerializer
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
@@ -73,3 +73,9 @@ class LoginView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = UserDetailSerializer
+    lookup_field = "id"
+    queryset = User.objects.all()

@@ -8,27 +8,30 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserManager(BaseUserManager):
     # Cria um usuário comum
-    def create_user(self, name, useremail, password=None):
+    def create_user(self, name, lastname, useremail, password=None):
         # Condições de criação
         if name is None:
             raise TypeError('Usuários devem ter um nome')
+        if lastname is None:
+            raise TypeError('Usuários devem ter um sobrenome')
         if useremail is None:
             raise TypeError('Usuários devem ter um e-mail')
 
         # Define uma senha para o usuário
-        user = self.model(name=name, useremail=self.normalize_email(useremail))
+        user = self.model(name=name, lastname=lastname,
+                          useremail=self.normalize_email(useremail))
         user.set_password(password)
         user.save()
         return user
 
     # Cria um super usuário
-    def create_superuser(self, name, useremail, password=None):
+    def create_superuser(self, name, lastname, useremail, password=None):
         # Condições de criação
         if password is None:
             raise TypeError('A senha não pode ser nula')
 
         # Define os direitos de super usuário
-        user = self.create_user(name, useremail, password)
+        user = self.create_user(name, lastname, useremail, password)
         user.is_superuser = True
         user.is_staff = True
         user.save()
@@ -36,7 +39,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=68)
+    lastname = models.CharField(max_length=120, default='')
     useremail = models.EmailField(max_length=255, unique=True)
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -44,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'useremail'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', 'lastname']
 
     objects = UserManager()
 

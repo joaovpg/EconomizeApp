@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http'
-import { UserModel, UserLogin } from '../models/user.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class AuthenticationService {
     this.user = this.auth.authState;
   }
 
-  loginUser(userLogin: UserLogin): Observable<any> {
-    return this.http.post(this.api + 'login/', userLogin);
+  loginUser(user: UserModel): Observable<any> {
+    return this.http.post(this.api + 'login/', user);
   }
 
   createUser(user: UserModel): Observable<any> {
@@ -28,5 +28,16 @@ export class AuthenticationService {
     return this.auth.signOut();
   }
 
+  getUserDetail(id: any): Observable<any> {
+    return this.http.get(this.api + 'perfil/' + id)
+  }
+
+  updateUser(id: any, user: UserModel): Observable<any> {
+    return this.http.put(this.api + 'perfil/' + id, user)
+  }
+
+  deleteUser(id: any): Observable<any> {
+    return this.http.delete(this.api + 'perfil/' + id);
+  }
 
 }

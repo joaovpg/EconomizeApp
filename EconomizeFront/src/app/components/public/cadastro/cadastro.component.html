@@ -14,9 +14,13 @@
             </div>
             <form>
                 <div class="form__group">
-                    <input class="form__control" type="text" placeholder="Nome completo" name="name"
-                        [(ngModel)]="user.name">
-                    <label class="form__label" for="name">Nome completo</label>
+                    <input class="form__control" type="text" placeholder="Nome" name="name" [(ngModel)]="user.name">
+                    <label class="form__label" for="name">Nome</label>
+                </div>
+                <div class="form__group">
+                    <input class="form__control" type="text" placeholder="Sobrenome" name="lastname"
+                        [(ngModel)]="user.lastname">
+                    <label class="form__label" for="name">Sobrenome</label>
                 </div>
                 <div class="form__group">
                     <input class="form__control" type="email" placeholder="E-mail" name="useremail"

@@ -9,11 +9,13 @@ from django.contrib import auth
 class CreateUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         max_length=68, min_length=6, write_only=True)
-    name = serializers.CharField(min_length=1, max_length=255)
+    name = serializers.CharField(min_length=3, max_length=68)
+    lastname = serializers.CharField(min_length=3, max_length=120)
+    useremail = serializers.EmailField(min_length=3, max_length=255)
 
     class Meta:
         model = User
-        fields = ['name', 'useremail', 'password']
+        fields = ['name', 'lastname', 'useremail', 'password']
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -49,7 +51,8 @@ class LoginSerializer(serializers.ModelSerializer):
 
         # Verifica se as credências estão corretas
         if not user:
-            raise AuthenticationFailed('Credenciais inválidas')
+            raise AuthenticationFailed(
+                'Usuário ou senha incorretos')
 
         # Verifica se a conta está desabilitada
         if not user.is_active:
@@ -65,3 +68,14 @@ class LoginSerializer(serializers.ModelSerializer):
             'useremail': user.useremail,
             'tokens': user.tokens()
         }
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    useremail = serializers.EmailField(
+        max_length=68, min_length=3, read_only=True)
+    name = serializers.CharField(min_length=3, max_length=68)
+    lastname = serializers.CharField(min_length=3, max_length=120)
+
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'lastname', 'useremail']
