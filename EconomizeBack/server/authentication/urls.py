@@ -5,5 +5,5 @@ urlpatterns = [
     path('create-user/', CreateUserView.as_view(), name="create-user"),
     path('email-verify/', VerifyEmail.as_view(), name="email-verify"),
     path('login/', LoginView.as_view(), name="login"),
-    path('perfil/<int:id>', UserDetailView.as_view()),
+    path('user/<int:id>', UserDetailView.as_view()),
 ]

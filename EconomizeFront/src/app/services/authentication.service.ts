@@ -29,15 +29,15 @@ export class AuthenticationService {
   }
 
   getUserDetail(id: any): Observable<any> {
-    return this.http.get(this.api + 'perfil/' + id)
+    return this.http.get(this.api + 'user/' + id)
   }
 
   updateUser(id: any, user: UserModel): Observable<any> {
-    return this.http.put(this.api + 'perfil/' + id, user)
+    return this.http.put(this.api + 'user/' + id, user)
   }
 
   deleteUser(id: any): Observable<any> {
-    return this.http.delete(this.api + 'perfil/' + id);
+    return this.http.delete(this.api + 'user/' + id);
   }
 
 }
