@@ -16,13 +16,14 @@ export class AuthenticationService {
     this.user = this.auth.authState;
   }
 
+  createUser(user: UserModel): Observable<any> {
+    return this.http.post(this.api + 'create-user/', user);
+  }
+
   loginUser(user: UserModel): Observable<any> {
     return this.http.post(this.api + 'login/', user);
   }
 
-  createUser(user: UserModel): Observable<any> {
-    return this.http.post(this.api + 'create-user/', user);
-  }
 
   logout(): Promise<void> {
     return this.auth.signOut();

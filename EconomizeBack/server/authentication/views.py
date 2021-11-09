@@ -8,6 +8,7 @@ import jwt
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import Util
 from django.urls import reverse
+from django.http import HttpResponseRedirect
 from server import settings
 
 # Create your views here.
@@ -19,15 +20,18 @@ class CreateUserView(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
 
     def post(self, request):
+        # Cria o usuário
         user = request.data
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+
+        # Pega os dados para enviar o e-mail
         user_data = serializer.data
         user = User.objects.get(useremail=user_data['useremail'])
-        token = RefreshToken.for_user(user).access_token
 
         # Gera link com token para ativação
+        token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
         relativeLink = reverse('email-verify')
 
@@ -57,7 +61,8 @@ class VerifyEmail(views.APIView):
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            return Response({'E-mail': 'Ativado com sucesso'}, status=status.HTTP_200_OK)
+            return HttpResponseRedirect("http://localhost:4200/home")
+            # return Response({'E-mail': 'Ativado com sucesso'}, status=status.HTTP_200_OK)
 
         except jwt.ExpiredSignatureError as identifier:
             return Response({'Erro': 'Token expirado'}, status=status.HTTP_400_BAD_REQUEST)
@@ -79,3 +84,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserDetailSerializer
     lookup_field = "id"
     queryset = User.objects.all()
+
+
+# class ChangePasswordView(generics.APIView):
+#     pass
