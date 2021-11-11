@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { AuthguardService } from './services/authguard.service';
 import { UserNotAuthComponent } from './components/public/user-not-auth/user-not-auth.component';
 import { ChartModule } from 'primeng/chart';
+import { ToastModule } from 'primeng/toast';
 import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Modais
@@ -74,6 +76,8 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     ChartModule,
     NgbModule,
     HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule
   ],
   providers: [
     // AuthguardService,

@@ -86,3 +86,13 @@ class ChangePasswordSerializer(serializers.Serializer):
 
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+class ResquestResetPasswordSerializer(serializers.Serializer):
+    useremail = serializers.EmailField(min_length=2)
+
+    class Meta:
+        fields = ['useremail']
+
+    def validate(self, attrs):
+        return super().validate(attrs)
