@@ -7,7 +7,15 @@ export class UserModel {
     tokens!: string;
 }
 
-export class passwordModel {
+export class PasswordModel {
+    old_password!: string;
+    new_password!: string;
+}
+
+export class ErrorDetail {
+    useremail!: string;
+    password!: string;
+    detail!: string;
     old_password!: string;
     new_password!: string;
 }

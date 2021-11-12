@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserModel, passwordModel } from 'src/app/models/user.model';
+import { ActivatedRoute } from '@angular/router';
+import { UserModel, PasswordModel, ErrorDetail } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MessageService } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
+  providers: [MessageService]
 })
 export class PerfilComponent implements OnInit {
   user: UserModel = new UserModel;
-  password: passwordModel = new passwordModel;
+  password: PasswordModel = new PasswordModel;
+  erro: ErrorDetail = new ErrorDetail;
   confirmPassword: any;
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private auth: AuthenticationService, private route: ActivatedRoute) { }
+  constructor(private auth: AuthenticationService, private route: ActivatedRoute, private messageService: MessageService) { }
 
 
   ngOnInit(): void {
@@ -27,18 +31,18 @@ export class PerfilComponent implements OnInit {
         this.user = user;
       },
       err => {
-        console.log('Erro ao listar: ', err);
+        this.messageError('Erro ao listar: ' + err);
       })
   }
 
   updateUserData() {
     this.auth.updateUser(this.id, this.user).subscribe(
       () => {
-        alert("Usuário atualizado com sucesso");
+        this.messageSuccess("Usuário atualizado com sucesso");
         this.listUserData();
         console.log(this.user);
       }, err => {
-        console.log("Erro ao atualizar usuário: ", err);
+        this.messageError("Erro ao atualizar usuário: " + err);
       })
   }
 
@@ -49,16 +53,27 @@ export class PerfilComponent implements OnInit {
       this.auth.changePassword(this.id, this.password).subscribe(
         (userPassword) => {
           this.password = userPassword;
-        }, err => {
-          console.log(this.password);
-          console.log("Erro ao atualizar senha: ", err);
+        }, (response: HttpErrorResponse) => {
+          this.erro = response.error;
+          if ((this.erro.old_password) != undefined) {
+            this.messageError("Senha atual: " + this.erro.old_password);
+          } else if ((this.erro.new_password) != undefined) {
+            this.messageError("Nova senha: " + this.erro.new_password);
+          }
         }, () => {
-          alert("Senha atualizada com sucesso");
-          console.log(this.password);
+          this.messageSuccess("Senha atualizada com sucesso");
         }
       );
     } else {
-      alert("Confirmação da senha está errada");
+      this.messageError("As senhas não são iguais");
     }
+  }
+
+  messageError(message: any) {
+    this.messageService.add({ severity: 'error', summary: 'Erro ao alterar senha', detail: message });
+  }
+
+  messageSuccess(message: string) {
+    this.messageService.add({ severity: 'success', summary: message, detail: '' });
   }
 }

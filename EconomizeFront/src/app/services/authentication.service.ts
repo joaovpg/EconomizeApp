@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http'
-import { UserModel, passwordModel } from '../models/user.model';
+import { UserModel, PasswordModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class AuthenticationService {
     return this.http.delete(this.api + 'user/' + id);
   }
 
-  changePassword(id: any, userPassword: passwordModel): Observable<any> {
+  changePassword(id: any, userPassword: PasswordModel): Observable<any> {
     return this.http.put(this.api + 'change-password/' + id, userPassword);
   }
 
