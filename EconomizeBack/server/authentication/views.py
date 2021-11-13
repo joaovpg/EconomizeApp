@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, status, views, permissions
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
-from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer, UserDetailSerializer, ChangePasswordSerializer
+from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer, UserDetailSerializer, ChangePasswordSerializer, ResquestResetPasswordSerializer
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
@@ -90,12 +90,8 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 class ChangePasswordView(generics.UpdateAPIView):
     serializer_class = ChangePasswordSerializer
     model = User
-    queryset = User.objects.all();
     lookup_field = "id"
-
-    def get_object(self):
-        obj = self.request.user
-        return obj
+    queryset = User.objects.all()
 
     def update(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -107,8 +103,14 @@ class ChangePasswordView(generics.UpdateAPIView):
                 return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
             self.object.set_password(serializer.data.get("new_password"))
             self.object.save()
-            response = {
+            return Response({
                 'status': 'success',
                 'code': status.HTTP_200_OK,
                 'message': 'Password update successfully',
-            }
+            }, status=status.HTTP_200_OK)
+
+class RequestResetPasswordView(generics.GenericAPIView):
+    serializer_class = ResquestResetPasswordSerializer
+
+    def post(self, request):
+        serliazer = self.serializer_class(data=request.data)
