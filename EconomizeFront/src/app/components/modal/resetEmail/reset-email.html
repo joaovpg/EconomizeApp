@@ -9,11 +9,12 @@
         <div class="modal-body">
             <form>
                 <label class="modal-label">Iremos encaminhar o link de reset para o seu e-mail</label>
-                <input placeholder="Digite o seu e-mail" type="email" class="modal-control">
+                <input placeholder="Digite o seu e-mail" type="email" class="modal-control" name="useremail"
+                    [(ngModel)]="useremail.useremail">
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="modal-btn" (click)="c('Save click')">Enviar</button>
+            <button type="button" class="modal-btn" (click)="resetPassword()">Enviar</button>
         </div>
     </div>
 </ng-template>

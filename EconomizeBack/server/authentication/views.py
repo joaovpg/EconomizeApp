@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from rest_framework import generics, status, views, permissions
+from rest_framework import generics, status, views
 from rest_framework.response import Response
-from rest_framework.serializers import Serializer
-from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer, UserDetailSerializer, ChangePasswordSerializer, ResquestResetPasswordSerializer
+from rest_framework import permissions
+from .serializers import CreateUserSerializer, EmailVerificationSerializer, LoginSerializer, UserDetailSerializer, ChangePasswordSerializer, ResquestResetPasswordSerializer, SetNewPasswordSerializer
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
@@ -11,6 +11,9 @@ from .utils import Util
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from server import settings
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.encoding import force_str, smart_str, force_str, smart_bytes, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 # Create your views here.
 
@@ -84,7 +87,15 @@ class LoginView(generics.GenericAPIView):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserDetailSerializer
     lookup_field = "id"
+    permission_classes = (permissions.IsAuthenticated,)
     queryset = User.objects.all()
+
+    def perform_create(self, serializer):
+        return serializer.save(useremail=self.request.user)
+
+#   Filtra as informações pelo id do usuário
+    def get_queryset(self):
+        return self.queryset.filter(useremail=self.request.user)
 
 
 class ChangePasswordView(generics.UpdateAPIView):
@@ -92,6 +103,7 @@ class ChangePasswordView(generics.UpdateAPIView):
     model = User
     lookup_field = "id"
     queryset = User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
 
     def update(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -109,8 +121,66 @@ class ChangePasswordView(generics.UpdateAPIView):
                 'message': 'Password update successfully',
             }, status=status.HTTP_200_OK)
 
+
+# Views para o "Esqueci minha senha"
+
 class RequestResetPasswordView(generics.GenericAPIView):
     serializer_class = ResquestResetPasswordSerializer
 
     def post(self, request):
-        serliazer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data)
+
+        # Solicita o e-mail do usuário
+        useremail = request.data.get('useremail', '')
+
+        # Verifica se o e-mail existe na base de dados
+        if User.objects.filter(useremail=useremail).exists():
+            user = User.objects.get(useremail=useremail)
+            uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
+            token = PasswordResetTokenGenerator().make_token(user)
+            current_site = get_current_site(request=request).domain
+            relativeLink = reverse(
+                'password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
+
+            redirect_url = request.data.get(
+                'redirect_url', 'password-reset-complete')
+            absurl = 'http://'+current_site+relativeLink
+
+            email_body = 'Parece que você esqueceu sua senha \n\nUse o link abaixo para redefini-la\n\n' + \
+                absurl+'?redirect_url='+redirect_url
+
+            data = {'email_body': email_body, 'to_email': user.useremail,
+                    'email_subject': '[Economize] Reset de senha'}
+            Util.send_email(data)
+
+            return Response({'success': 'Enviamos um e-mail com um link para redefinir sua senha'}, status=status.HTTP_200_OK)
+
+
+class PasswordTokenCheckAPI(generics.GenericAPIView):
+
+    def get(self, request, uidb64, token):
+
+        redirect_url = request.GET.get('redirect_url')
+
+        try:
+            id = smart_str(urlsafe_base64_decode(uidb64))
+
+            user = User.objects.get(id=id)
+
+            if not PasswordResetTokenGenerator().check_token(user, token):
+                return Response({'error': 'Token inválido, por favor faz uma nova requisição'})
+
+            return Response({'success:': True, 'message': 'Credenciais válidas', 'uidb64': uidb64, 'token': token}, status=status.HTTP_200_OK)
+
+        except DjangoUnicodeDecodeError as identifier:
+            return Response({'error': 'Token inválido, por favor faz uma nova requisição'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SetNewPasswordAPIView(generics.GenericAPIView):
+    serializer_class = SetNewPasswordSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        return Response({'success': True, 'message': 'Senha redefinida com sucesso'}, status=status.HTTP_200_OK)

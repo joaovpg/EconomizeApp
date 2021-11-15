@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrorDetail, UserModel } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TokensService } from 'src/app/services/tokens.service';
 
 @Component({
   selector: 'app-login',
@@ -15,19 +16,20 @@ export class LoginComponent implements OnInit {
   user: UserModel = new UserModel;
   erro: ErrorDetail = new ErrorDetail;
 
-  constructor(private auth: AuthenticationService, private router: Router, private messageService: MessageService) { }
+  constructor(private auth: AuthenticationService, private router: Router, private messageService: MessageService, private token: TokensService) { }
 
   ngOnInit(): void {
   }
 
   requestLogin() {
     this.auth.loginUser(this.user)
-
       .subscribe(
         // Retorno do método post com o usuário
         user => {
           console.log("Response: ", user);
           this.user = user;
+          console.log(this.token.getToken());
+          return this.token.setToken(this.user.token_access);
         },
         // Retorna o erro, caso tenha
         (response: HttpErrorResponse) => {
@@ -45,7 +47,6 @@ export class LoginComponent implements OnInit {
           } else if (this.erro.password != undefined) {
             this.message("Senha: " + this.erro.password);
           }
-
         },
         // Retorna o sucesso.
         () => {

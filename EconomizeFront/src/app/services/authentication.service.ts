@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { UserModel, PasswordModel } from '../models/user.model';
+import { TokensService } from './tokens.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,25 +25,57 @@ export class AuthenticationService {
     return this.http.post(this.api + 'login/', user);
   }
 
+  requestResetPassword(useremail: any): Observable<any> {
+    return this.http.post(this.api + 'request-reset-email', useremail);
+  }
 
   logout(): Promise<void> {
     return this.auth.signOut();
   }
 
-  getUserDetail(id: any): Observable<any> {
-    return this.http.get(this.api + 'user/' + id)
+  getAccessToken(refreshToken: any) {
+    return this.http.post(this.api + 'token/refresh', refreshToken)
   }
 
-  updateUser(id: any, user: UserModel): Observable<any> {
-    return this.http.put(this.api + 'user/' + id, user)
+  getUserDetail(id: any, token: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(this.api + 'user/' + id, { headers: headers });
+
   }
 
-  deleteUser(id: any): Observable<any> {
-    return this.http.delete(this.api + 'user/' + id);
+  updateUser(id: any, user: UserModel, token: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(this.api + 'user/' + id, user, { headers: headers })
   }
 
-  changePassword(id: any, userPassword: PasswordModel): Observable<any> {
-    return this.http.put(this.api + 'change-password/' + id, userPassword);
+  deleteUser(id: any, token: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete(this.api + 'user/' + id, { headers: headers });
+  }
+
+  changePassword(id: any, userPassword: PasswordModel, token: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(this.api + 'change-password/' + id, userPassword, { headers: headers });
   }
 
 }

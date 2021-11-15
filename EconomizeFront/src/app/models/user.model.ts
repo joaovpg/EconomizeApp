@@ -4,7 +4,12 @@ export class UserModel {
     lastname!: string;
     useremail!: string;
     password!: string;
-    tokens!: string;
+    token_access!: string;
+    token_refresh!: string;
+}
+
+export class requestResetModel {
+    useremail!: string;
 }
 
 export class PasswordModel {

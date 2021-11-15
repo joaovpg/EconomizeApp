@@ -4,6 +4,7 @@ import { UserModel, PasswordModel, ErrorDetail } from 'src/app/models/user.model
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TokensService } from 'src/app/services/tokens.service';
 
 @Component({
   selector: 'app-perfil',
@@ -17,8 +18,10 @@ export class PerfilComponent implements OnInit {
   erro: ErrorDetail = new ErrorDetail;
   confirmPassword: any;
   id = this.route.snapshot.paramMap.get('id');
+  tokenAccess = this.token.getToken();
 
-  constructor(private auth: AuthenticationService, private route: ActivatedRoute, private messageService: MessageService) { }
+
+  constructor(private auth: AuthenticationService, private route: ActivatedRoute, private messageService: MessageService, private token: TokensService) { }
 
 
   ngOnInit(): void {
@@ -26,17 +29,18 @@ export class PerfilComponent implements OnInit {
   }
 
   listUserData() {
-    this.auth.getUserDetail(this.id).subscribe(
+    this.auth.getUserDetail(this.id, this.tokenAccess).subscribe(
       (user) => {
         this.user = user;
       },
       err => {
         this.messageError('Erro ao listar: ' + err);
+        console.log(this.tokenAccess);
       })
   }
 
   updateUserData() {
-    this.auth.updateUser(this.id, this.user).subscribe(
+    this.auth.updateUser(this.id, this.user, this.tokenAccess).subscribe(
       () => {
         this.messageSuccess("Usuário atualizado com sucesso");
         this.listUserData();
@@ -50,7 +54,7 @@ export class PerfilComponent implements OnInit {
     console.log(this.confirmPassword);
     console.log(this.password.new_password);
     if (this.confirmPassword == this.password.new_password) {
-      this.auth.changePassword(this.id, this.password).subscribe(
+      this.auth.changePassword(this.id, this.password, this.tokenAccess).subscribe(
         (userPassword) => {
           this.password = userPassword;
         }, (response: HttpErrorResponse) => {
