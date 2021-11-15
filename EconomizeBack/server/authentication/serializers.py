@@ -5,6 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .models import User
 from django.contrib import auth
 from django.utils.encoding import force_str
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 # Serializer de criação de usuário
 
@@ -137,3 +138,22 @@ class SetNewPasswordSerializer(serializers.Serializer):
         except Exception as e:
             raise AuthenticationFailed('O link de reset é inválido', 401)
         return super().validate(attrs)
+
+
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    default_error_message = {
+        'bad_token': ('Token expirado ou inválido')
+    }
+
+    def validate(self, attrs):
+        self.token = attrs['refresh']
+        return attrs
+
+    def save(self, **kwargs):
+        try:
+            RefreshToken(self.token).blacklist()
+
+        except TokenError:
+            self.fail('bad_token')

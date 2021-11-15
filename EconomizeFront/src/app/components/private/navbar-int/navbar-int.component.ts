@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { TokensService } from 'src/app/services/tokens.service';
 
 @Component({
   selector: 'app-navbar-int',
@@ -9,13 +10,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class NavbarIntComponent implements OnInit {
 
-  constructor(private authServ: AuthenticationService, private router: Router) { }
+  id = this.getSet.getId();
+  constructor(private authServ: AuthenticationService, private router: Router, private getSet: TokensService) { }
 
   ngOnInit(): void {
   }
 
-  sair(){
-    this.authServ.logout().then(()=> {
+  sair() {
+    this.authServ.logout().then(() => {
       this.router.navigate(['/home']);
     });
   }

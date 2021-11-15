@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
         user => {
           console.log("Response: ", user);
           this.user = user;
-          console.log(this.token.getToken());
-          return this.token.setToken(this.user.token_access);
+          this.token.setId(this.user.id);
+          this.token.setToken(this.user.token_access);
         },
         // Retorna o erro, caso tenha
         (response: HttpErrorResponse) => {

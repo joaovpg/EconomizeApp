@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   { path: 'notAuth', component: UserNotAuthComponent },
   { path: 'perfil/:id', component: PerfilComponent, },
-  { path: 'transacoes', component: TransacoesComponent, },
-  { path: 'investimentos', component: InvestimentosComponent, },
+  { path: 'transacoes/:id', component: TransacoesComponent, },
+  { path: 'investimentos/:id', component: InvestimentosComponent, },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

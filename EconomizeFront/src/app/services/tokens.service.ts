@@ -15,4 +15,12 @@ export class TokensService {
     return window.localStorage.getItem("token");
   }
 
+  setId(id: any) {
+    window.localStorage.setItem("id", id);
+  }
+
+  getId() {
+    return window.localStorage.getItem("id");
+  }
+
 }
