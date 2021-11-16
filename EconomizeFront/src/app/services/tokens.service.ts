@@ -7,12 +7,20 @@ export class TokensService {
 
   constructor() { }
 
-  setToken(token: any) {
-    window.localStorage.setItem("token", token);
+  setAccessToken(token: any) {
+    window.localStorage.setItem("accessToken", token);
   }
 
-  getToken() {
-    return window.localStorage.getItem("token");
+  getAccessToken() {
+    return window.localStorage.getItem("accessToken");
+  }
+
+  setRefreshToken(token: any) {
+    window.localStorage.setItem("refreshToken", token);
+  }
+
+  getRefreshToken() {
+    return window.localStorage.getItem("refreshToken");
   }
 
   setId(id: any) {

@@ -13,7 +13,7 @@ import { TokensService } from 'src/app/services/tokens.service';
 })
 export class NgbdModalExcluirConta {
     id = this.route.snapshot.paramMap.get('id');
-    tokenAccess = this.token.getToken();
+    tokenAccess = this.token.getAccessToken;
 
     closeResult = '';
 
@@ -27,10 +27,15 @@ export class NgbdModalExcluirConta {
         this.modalService.open(content, { size: 'lg' });
     }
 
+    dismissaAll(reason: any) {
+        this.modalService.dismissAll(reason);
+    }
+
     deleteUser() {
-        this.auth.deleteUser(this.id, this.tokenAccess).subscribe(
+        this.auth.deleteUser(this.id).subscribe(
             () => {
                 alert('Usuário deletado');
+                this.dismissaAll('');
                 this.router.navigate(['home/']);
             }, err => {
                 console.log('Erro ao deletar: ', err);

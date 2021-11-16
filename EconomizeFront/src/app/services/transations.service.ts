@@ -8,7 +8,7 @@ import { TokensService } from './tokens.service';
 })
 export class TransationsService {
   api = "http://localhost:8000/transations/";
-  tokenAccess = this.token.getToken();
+  tokenAccess = this.token.getAccessToken();
 
   constructor(private http: HttpClient, private token: TokensService) { }
 

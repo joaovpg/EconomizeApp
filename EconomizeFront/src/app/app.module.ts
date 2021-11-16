@@ -20,11 +20,6 @@ import { InvestimentosComponent } from './components/private/investimentos/inves
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 
-// Firebase
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
 
 // import { AuthguardService } from './services/authguard.service';
@@ -73,9 +68,6 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
     ChartModule,
     NgbModule,
     HttpClientModule,

@@ -11,14 +11,26 @@ import { TokensService } from 'src/app/services/tokens.service';
 export class NavbarIntComponent implements OnInit {
 
   id = this.getSet.getId();
-  constructor(private authServ: AuthenticationService, private router: Router, private getSet: TokensService) { }
+  token = this.getSet.getRefreshToken();
+  refreshToken = {
+    refresh: this.token,
+  }
+
+
+
+  constructor(private auth: AuthenticationService, private router: Router, private getSet: TokensService) { }
 
   ngOnInit(): void {
   }
 
-  sair() {
-    this.authServ.logout().then(() => {
+  logout() {
+    this.auth.logoutUser(this.refreshToken).subscribe(() => {
+      console.log("Usuário deslogado");
+      this.getSet.setAccessToken(undefined);
+      this.getSet.setId(undefined);
       this.router.navigate(['/home']);
-    });
+    }, err => {
+      console.log('Erro ao logar: ', err);
+    })
   }
 }
