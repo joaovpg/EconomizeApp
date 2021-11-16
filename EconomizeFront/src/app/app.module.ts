@@ -25,7 +25,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { AuthguardService } from './services/authguard.service';
 import { UserNotAuthComponent } from './components/public/user-not-auth/user-not-auth.component';
@@ -39,8 +39,9 @@ import { NgbdModalExcluirConta } from './components/modal/excluirConta/excluir-c
 import { NgbdModalExcluirTransacao } from './components/modal/excluirTransacao/excluir-transacao';
 import { NgbdModalEditarTransacao } from './components/modal/editarTransacao/editar-transacao';
 import { NgbdModalAdicionarTransacao } from './components/modal/adicionarTransacao/adicionar-transacao';
+import { NgbdModalAddBankAccount } from './components/modal/addBankAccount/addBankAccount';
+
 import { BtnActionsComponent } from './components/private/btn-actions/btn-actions.component';
-// import { AuthHeaderInterceptor } from './services/http-interceptors/auth.header.interceptor';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     NgbdModalExcluirTransacao,
     NgbdModalEditarTransacao,
     NgbdModalAdicionarTransacao,
+    NgbdModalAddBankAccount,
     BtnActionsComponent
   ],
   imports: [
@@ -84,11 +86,6 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     // AuthguardService,
     NgbModalConfig,
     NgbModal,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthHeaderInterceptor,
-    //   multi: true
-    // }
   ],
   bootstrap: [AppComponent]
 })

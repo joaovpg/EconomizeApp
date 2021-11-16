@@ -145,3 +145,12 @@ hr {
 .dashboard__charts {
     padding-bottom: 2.4rem;
 }
+
+.dashboard__account__icons {
+    display: none;
+}
+
+
+.dashboard__account__values:hover {
+    display: none;
+}

@@ -25,10 +25,6 @@
 .btn-actions:hover {
     opacity: 0.8;
 }
-.btn-conta{
-    padding: 0.8rem;
-    background-color: var(--var-vermelho);
-}
 
 .btn-categoria {
     padding: 0.8rem;

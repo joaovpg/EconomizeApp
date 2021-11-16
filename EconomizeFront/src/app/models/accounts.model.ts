@@ -1,6 +1,6 @@
 export class Accounts {
     id!: any;
-    name!: string;
+    nome!: string;
     saldo!: any;
 
 }

@@ -19,6 +19,7 @@ export class TransacoesComponent implements OnInit {
   constructor(private transations: TransationsService) { }
 
   account: Array<any> = new Array();
+  total: any;
 
   ngOnInit(): void {
 
@@ -48,6 +49,7 @@ export class TransacoesComponent implements OnInit {
   getContas() {
     this.transations.getAccounts().subscribe((accounts: any) => {
       this.account = accounts;
+      this.total += accounts;
       console.log(this.account);
     }, err => {
       console.log("Erro ao listar: ", err);

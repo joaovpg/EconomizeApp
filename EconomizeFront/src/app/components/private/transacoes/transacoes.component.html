@@ -37,11 +37,11 @@
                 <table class="table table-borderless dashboard__table">
                     <tr *ngFor="let item of account" class="dashboard__table__row align-right">
                         <th scope="row">{{item.nome}}</th>
-                        <td>R$ {{item.saldo}}</td>
+                        <td class="dashboard__account__values">R$ {{item.saldo}}</td>
                         <td class="dashboard__table__icons">
-                            <ngbd-modal-editar-transacao class="dashboard__table__icons">
+                            <ngbd-modal-editar-transacao class="dashboard__table__icons dashboard__account__icons">
                             </ngbd-modal-editar-transacao>
-                            <ngbd-modal-excluir-transacao class="dashboard__table__icons">
+                            <ngbd-modal-excluir-transacao class="dashboard__table__icons dashboard__account__icons">
                             </ngbd-modal-excluir-transacao>
                         </td>
                     </tr>

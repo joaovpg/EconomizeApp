@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Accounts } from '../models/accounts.model';
 import { TokensService } from './tokens.service';
 
 @Injectable({
@@ -10,6 +11,16 @@ export class TransationsService {
   tokenAccess = this.token.getToken();
 
   constructor(private http: HttpClient, private token: TokensService) { }
+
+  createAccounts(accounts: Accounts) {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.tokenAccess}`
+    });
+
+    return this.http.post(this.api + 'contas/', accounts, { headers: headers })
+  }
 
   getAccounts() {
 
