@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Accounts } from 'src/app/models/accounts.model';
+import { TransationsService } from 'src/app/services/transations.service';
 
 
 @Component({
@@ -14,9 +16,14 @@ export class TransacoesComponent implements OnInit {
   subscription!: Subscription;
   basicOptions: any;
 
-  constructor() { }
+  constructor(private transations: TransationsService) { }
+
+  account: Array<any> = new Array();
 
   ngOnInit(): void {
+
+    this.getContas();
+
     this.data = {
       labels: ['A', 'B', 'C'],
       datasets: [
@@ -35,6 +42,16 @@ export class TransacoesComponent implements OnInit {
         }
       ]
     };
+  }
+
+
+  getContas() {
+    this.transations.getAccounts().subscribe((accounts: any) => {
+      this.account = accounts;
+      console.log(this.account);
+    }, err => {
+      console.log("Erro ao listar: ", err);
+    })
   }
 
 }

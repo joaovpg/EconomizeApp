@@ -4,7 +4,6 @@ import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { UserModel, PasswordModel } from '../models/user.model';
-import { TokensService } from './tokens.service';
 
 @Injectable({
   providedIn: 'root'

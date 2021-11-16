@@ -104,11 +104,12 @@ hr {
 
 .dashboard__table__icons {
     color: var(--var-preto);
+    cursor: pointer;
     font-size: 1.6rem;
     font-family: 'Material Icons', sans-serif;
     text-decoration: none;
-    cursor: pointer;
     transition: all 200ms;
+    padding: 0;
 }
 
 .dashboard__table__icons:nth-child(1):hover {
