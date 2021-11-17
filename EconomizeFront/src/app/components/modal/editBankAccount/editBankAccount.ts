@@ -28,12 +28,12 @@ export class NgbdModalEditBankAccount {
         this.modalService.dismissAll(reason);
     }
 
-    editAccount() {
-        this.transation.updtAccounts(id, this.accounts).subscribe(()=>{
-            console.log("Atualizado com sucesso");
-        },error =>{
-            console.log("Erro ao atualizar",error);
-        })
-    }
+    // editAccount() {
+    //     this.transation.updtAccounts(id, this.accounts).subscribe(()=>{
+    //         console.log("Atualizado com sucesso");
+    //     },error =>{
+    //         console.log("Erro ao atualizar",error);
+    //     })
+    // }
 
 }
