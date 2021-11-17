@@ -31,4 +31,14 @@ export class TransationsService {
 
     return this.http.get(this.api + 'contas/', { headers: headers })
   }
+
+  updtAccounts(id:any,conta:Accounts) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.tokenAccess}`
+    });
+
+    return this.http.put(this.api + 'contas/' + id, conta, { headers: headers })
+  }
+
 }

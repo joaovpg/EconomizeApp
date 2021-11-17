@@ -147,7 +147,7 @@ hr {
 }
 
 .dashboard__account__icons {
-    display: none;
+    display: block;
 }
 
 
