@@ -2,26 +2,6 @@ from django.db.models import fields
 from rest_framework import serializers
 from .models import Contas, Transations, Categorias
 
-class TransationsSerializer(serializers.ModelSerializer):
-
-    descricao = serializers.CharField(min_length=1, max_length=68)
-    valor = serializers.IntegerField()
-    data = serializers.DateField()
-    tipo = serializers.CharField(min_length=1, max_length=50)
-
-    class Meta:
-        model = Transations
-        fields = ['id',
-                  'descricao',
-                  'valor',
-                  'data',
-                  'tipo',
-                  'idCategorias',
-                  'idUsuario',
-                  'idConta'
-            ]
-
-
 class ContasSerializer(serializers.ModelSerializer):
     
     nome = serializers.CharField(min_length=1, max_length=68)
@@ -52,7 +32,6 @@ class ContasDetailSerializer(serializers.ModelSerializer):
             'idUsuario'
         ]
 
-
 class CategoriasSerializer(serializers.ModelSerializer):
 
     tipo = serializers.CharField(min_length=1, max_length=68)
@@ -62,3 +41,51 @@ class CategoriasSerializer(serializers.ModelSerializer):
         fields = ['id',
                   'tipo',
                   ]
+
+class CategoriasDetailSerializer(serializers.ModelSerializer):
+
+    tipo = serializers.CharField(min_length=1, max_length=68)
+
+    class Meta:
+        model = Categorias
+        fields = ['id',
+                  'tipo',
+                  ]
+
+class TransationsSerializer(serializers.ModelSerializer):
+
+    descricao = serializers.CharField(min_length=1, max_length=68)
+    valor = serializers.IntegerField()
+    data = serializers.DateField()
+    tipo = serializers.CharField(min_length=1, max_length=50)
+
+    class Meta:
+        model = Transations
+        fields = ['id',
+                  'descricao',
+                  'valor',
+                  'data',
+                  'tipo',
+                  'idCategorias',
+                  'idUsuario',
+                  'idConta'
+            ]
+
+class TransationsDetailSerializer(serializers.ModelSerializer):
+
+    descricao = serializers.CharField(min_length=1, max_length=68)
+    valor = serializers.IntegerField()
+    data = serializers.DateField()
+    tipo = serializers.CharField(min_length=1, max_length=50)
+
+    class Meta:
+        model = Transations
+        fields = ['id',
+                  'descricao',
+                  'valor',
+                  'data',
+                  'tipo',
+                  'idCategorias',
+                  'idUsuario',
+                  'idConta'
+            ]
