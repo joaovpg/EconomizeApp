@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { UserModel, PasswordModel } from '../models/user.model';
-import { TokensService } from './tokens.service';
+import { GetSetService } from './getSet.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthenticationService {
   api = "http://127.0.0.1:8000/auth/";
   accessToken = this.token.getAccessToken();
 
-  constructor(private http: HttpClient, private token: TokensService) { }
+  constructor(private http: HttpClient, private token: GetSetService) { }
 
   createUser(user: UserModel): Observable<any> {
     return this.http.post(this.api + 'create-user/', user);

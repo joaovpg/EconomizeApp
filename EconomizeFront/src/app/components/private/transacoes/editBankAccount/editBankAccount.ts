@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { timer } from 'rxjs';
 import { Accounts } from 'src/app/models/accounts.model';
-import { TokensService } from 'src/app/services/tokens.service';
+import { GetSetService } from 'src/app/services/getSet.service';
 import { TransationsService } from 'src/app/services/transations.service';
 
 @Component({
@@ -12,14 +11,20 @@ import { TransationsService } from 'src/app/services/transations.service';
     // add NgbModalConfig and NgbModal to the component providers
     providers: [NgbModalConfig, NgbModal]
 })
-export class NgbdModalEditBankAccount {
+export class NgbdModalEditBankAccount implements OnInit {
     closeResult = '';
     account: Accounts = new Accounts();
+    id: any;
+    test: any;
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: TokensService, private transation: TransationsService) {
+    constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: GetSetService, private transation: TransationsService) {
         // customize default values of modals used by this component tree
         config.backdrop = true;
         config.keyboard = true;
+    }
+
+    ngOnInit() {
+        this.getAccount();
     }
 
     open(content: any) {
@@ -31,25 +36,17 @@ export class NgbdModalEditBankAccount {
     }
 
     getAccount() {
-        let id = this.getSet.getIdAccount();
-        this.transation.getAccountDetail(id).subscribe((account: any) => {
-            console.log("Conta: ", this.account)
-            this.account = account;
-        }, erro => {
-            console.log("Erro ao listar: ", erro);
-        })
-
+        this.account = this.getSet.getAccount();
     }
 
     putAccount() {
-        let id = this.getSet.getIdAccount();;
+        let id = this.getSet.getAccount().id;
         this.transation.updtAccount(id, this.account).subscribe(() => {
             console.log("Atualizado");
+            this.dismissaAll('');
         }, erro => {
             console.log("Erro ao atualizar: ", erro);
         })
-        this.dismissaAll('');
         window.location.reload();
     }
-
 }

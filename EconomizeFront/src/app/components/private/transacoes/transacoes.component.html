@@ -40,10 +40,10 @@
                         <td class="dashboard__account__values">R$ {{item.saldo}}</td>
                         <td class="dashboard__table__icons">
                             <ngbd-modal-editBankAccount class="dashboard__table__icons dashboard__account__icons"
-                                id="{{item.id}}" (click)="setAccountId(item.id)">
+                                id="{{item.id}}" (click)="getAccount(item.id)">
                             </ngbd-modal-editBankAccount>
                             <ngbd-modal-deleteBankAccount class="dashboard__table__icons dashboard__account__icons"
-                                id="{{item.id}}" (click)="setAccountId(item.id)"></ngbd-modal-deleteBankAccount>
+                                id="{{item.id}}" (click)="getAccount(item.id)"></ngbd-modal-deleteBankAccount>
                         </td>
                     </tr>
                 </table>

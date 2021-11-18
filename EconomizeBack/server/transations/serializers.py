@@ -27,6 +27,7 @@ class ContasDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contas
         fields = [
+            'id',
             'nome',
             'saldo',
             'idUsuario'

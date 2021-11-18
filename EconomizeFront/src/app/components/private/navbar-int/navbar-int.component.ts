@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { TokensService } from 'src/app/services/tokens.service';
+import { GetSetService } from 'src/app/services/getSet.service';
 
 @Component({
   selector: 'app-navbar-int',
@@ -18,7 +18,7 @@ export class NavbarIntComponent implements OnInit {
 
 
 
-  constructor(private auth: AuthenticationService, private router: Router, private getSet: TokensService) { }
+  constructor(private auth: AuthenticationService, private router: Router, private getSet: GetSetService) { }
 
   ngOnInit(): void {
   }

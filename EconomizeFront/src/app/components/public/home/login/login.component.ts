@@ -4,7 +4,7 @@ import { ErrorDetail, UserModel } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TokensService } from 'src/app/services/tokens.service';
+import { GetSetService } from 'src/app/services/getSet.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   user: UserModel = new UserModel;
   erro: ErrorDetail = new ErrorDetail;
 
-  constructor(private auth: AuthenticationService, private router: Router, private messageService: MessageService, private token: TokensService) { }
+  constructor(private auth: AuthenticationService, private router: Router, private messageService: MessageService, private token: GetSetService) { }
 
   ngOnInit(): void {
   }

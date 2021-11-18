@@ -1,12 +1,12 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { Accounts } from '../models/accounts.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TokensService {
+export class GetSetService {
 
-  idAccount: any;
+  account: Accounts = new Accounts();
 
   constructor() { }
 
@@ -42,4 +42,15 @@ export class TokensService {
     return window.localStorage.getItem("idAccount");
   }
 
+  setAccount(accounts: Accounts) {
+    this.account.id = accounts.id;
+    this.account.nome = accounts.nome;
+    this.account.saldo = accounts.saldo;
+  }
+
+  getAccount() {
+    return this.account;
+  }
+
 }
+

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Accounts } from 'src/app/models/accounts.model';
-import { TokensService } from 'src/app/services/tokens.service';
-import { TransationsService } from 'src/app/services/transations.service';
 
 @Component({
     selector: 'ngbd-modal-editar-transacao',

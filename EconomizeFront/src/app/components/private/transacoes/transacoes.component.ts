@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TokensService } from 'src/app/services/tokens.service';
+import { GetSetService } from 'src/app/services/getSet.service';
 import { TransationsService } from 'src/app/services/transations.service';
 
 
@@ -11,10 +11,7 @@ import { TransationsService } from 'src/app/services/transations.service';
 })
 export class TransacoesComponent implements OnInit {
 
-
-
-  constructor(private transations: TransationsService, private getSet: TokensService) { }
-
+  constructor(private transations: TransationsService, private getSet: GetSetService) { }
   data: any;
   chartOptions: any;
   subscription!: Subscription;
@@ -57,10 +54,17 @@ export class TransacoesComponent implements OnInit {
     })
   }
 
-  setAccountId(id: any) {
-    this.getSet.setIdAccount(id);
-    return console.log(this.getSet.getIdAccount());
-  }
+  getAccount(id: any) {
+    console.log("Elemento filho: ", id);
 
+    this.transations.getAccountDetail(id).subscribe((account: any) => {
+      console.log("Conta: ", account)
+      this.getSet.setAccount(account);
+      console.log("Teste conta", this.getSet.getAccount());
+    }, erro => {
+      console.log("Erro ao listar: ", erro);
+    })
+
+  }
 
 }

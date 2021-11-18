@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Accounts } from '../models/accounts.model';
-import { TokensService } from './tokens.service';
+import { GetSetService } from './getSet.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class TransationsService {
   api = "http://localhost:8000/transations/";
   tokenAccess = this.token.getAccessToken();
 
-  constructor(private http: HttpClient, private token: TokensService) { }
+  constructor(private http: HttpClient, private token: GetSetService) { }
 
   createAccounts(accounts: Accounts) {
 

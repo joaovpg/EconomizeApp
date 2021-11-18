@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { TokensService } from 'src/app/services/tokens.service';
+import { GetSetService } from 'src/app/services/getSet.service';
 
 @Component({
     selector: 'ngbd-modal-excluir-conta',
@@ -17,7 +17,7 @@ export class NgbdModalExcluirConta {
 
     closeResult = '';
 
-    constructor(private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, config: NgbModalConfig, private modalService: NgbModal, private token: TokensService) {
+    constructor(private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, config: NgbModalConfig, private modalService: NgbModal, private token: GetSetService) {
         // customize default values of modals used by this component tree
         config.backdrop = true;
         config.keyboard = true;
