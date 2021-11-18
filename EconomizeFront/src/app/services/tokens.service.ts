@@ -1,9 +1,12 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokensService {
+
+  idAccount: any;
 
   constructor() { }
 
@@ -29,6 +32,14 @@ export class TokensService {
 
   getId() {
     return window.localStorage.getItem("id");
+  }
+
+  setIdAccount(id: any) {
+    return window.localStorage.setItem("idAccount", id)
+  }
+
+  getIdAccount() {
+    return window.localStorage.getItem("idAccount");
   }
 
 }

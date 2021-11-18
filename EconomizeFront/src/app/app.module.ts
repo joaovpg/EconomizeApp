@@ -35,7 +35,8 @@ import { NgbdModalExcluirTransacao } from './components/modal/excluirTransacao/e
 import { NgbdModalEditarTransacao } from './components/modal/editarTransacao/editar-transacao';
 import { NgbdModalAdicionarTransacao } from './components/modal/adicionarTransacao/adicionar-transacao';
 import { NgbdModalAddBankAccount } from './components/modal/addBankAccount/addBankAccount';
-import { NgbdModalEditBankAccount } from './components/modal/editBankAccount/editBankAccount'; 
+import { NgbdModalEditBankAccount } from './components/modal/editBankAccount/editBankAccount';
+import { NgbdModalDeleteBankAccount } from './components/modal/deleteBankAccount/deleteBankAccount';
 
 import { BtnActionsComponent } from './components/private/btn-actions/btn-actions.component';
 
@@ -63,7 +64,8 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     NgbdModalAdicionarTransacao,
     NgbdModalAddBankAccount,
     BtnActionsComponent,
-    NgbdModalEditBankAccount
+    NgbdModalEditBankAccount,
+    NgbdModalDeleteBankAccount
   ],
   imports: [
     BrowserModule,

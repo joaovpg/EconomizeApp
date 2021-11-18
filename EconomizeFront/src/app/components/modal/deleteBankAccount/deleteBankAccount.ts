@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { timer } from 'rxjs';
-import { Accounts } from 'src/app/models/accounts.model';
 import { TokensService } from 'src/app/services/tokens.service';
 import { TransationsService } from 'src/app/services/transations.service';
 
 @Component({
-    selector: 'ngbd-modal-editBankAccount',
-    templateUrl: './editBankAccount.html',
-    styleUrls: ['./editBankAccount.css'],
+    selector: 'ngbd-modal-deleteBankAccount',
+    templateUrl: './deleteBankAccount.html',
+    styleUrls: ['./deleteBankAccount.css'],
     // add NgbModalConfig and NgbModal to the component providers
     providers: [NgbModalConfig, NgbModal]
 })
-export class NgbdModalEditBankAccount {
+export class NgbdModalDeleteBankAccount {
+
     closeResult = '';
-    account: Accounts = new Accounts();
 
     constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: TokensService, private transation: TransationsService) {
         // customize default values of modals used by this component tree
@@ -23,33 +21,21 @@ export class NgbdModalEditBankAccount {
     }
 
     open(content: any) {
-        this.modalService.open(content);
+        this.modalService.open(content, { size: 'lg' });
     }
 
     dismissaAll(reason: any) {
         this.modalService.dismissAll(reason);
     }
 
-    getAccount() {
+    deleteAccount() {
         let id = this.getSet.getIdAccount();
-        this.transation.getAccountDetail(id).subscribe((account: any) => {
-            console.log("Conta: ", this.account)
-            this.account = account;
+        this.transation.deleteAccount(id).subscribe(() => {
+            console.log("Deletado com sucesso");
         }, erro => {
-            console.log("Erro ao listar: ", erro);
-        })
-
-    }
-
-    putAccount() {
-        let id = this.getSet.getIdAccount();;
-        this.transation.updtAccount(id, this.account).subscribe(() => {
-            console.log("Atualizado");
-        }, erro => {
-            console.log("Erro ao atualizar: ", erro);
+            console.log("Erro ao deletar: ", erro);
         })
         this.dismissaAll('');
         window.location.reload();
     }
-
 }

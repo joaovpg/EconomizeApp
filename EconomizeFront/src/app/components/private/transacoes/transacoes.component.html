@@ -39,10 +39,11 @@
                         <th scope="row">{{item.nome}}</th>
                         <td class="dashboard__account__values">R$ {{item.saldo}}</td>
                         <td class="dashboard__table__icons">
-                            <ngbd-modal-editBankAccount class="dashboard__table__icons dashboard__account__icons">
+                            <ngbd-modal-editBankAccount class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="setAccountId(item.id)">
                             </ngbd-modal-editBankAccount>
-                            <ngbd-modal-excluir-transacao class="dashboard__table__icons dashboard__account__icons">
-                            </ngbd-modal-excluir-transacao>
+                            <ngbd-modal-deleteBankAccount class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="setAccountId(item.id)"></ngbd-modal-deleteBankAccount>
                         </td>
                     </tr>
                 </table>

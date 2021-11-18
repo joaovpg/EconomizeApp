@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Accounts } from 'src/app/models/accounts.model';
+import { TokensService } from 'src/app/services/tokens.service';
 import { TransationsService } from 'src/app/services/transations.service';
 
 
@@ -11,13 +11,14 @@ import { TransationsService } from 'src/app/services/transations.service';
 })
 export class TransacoesComponent implements OnInit {
 
+
+
+  constructor(private transations: TransationsService, private getSet: TokensService) { }
+
   data: any;
   chartOptions: any;
   subscription!: Subscription;
   basicOptions: any;
-
-  constructor(private transations: TransationsService) { }
-
   account: Array<any> = new Array();
   total: any;
 
@@ -55,5 +56,11 @@ export class TransacoesComponent implements OnInit {
       console.log("Erro ao listar: ", err);
     })
   }
+
+  setAccountId(id: any) {
+    this.getSet.setIdAccount(id);
+    return console.log(this.getSet.getIdAccount());
+  }
+
 
 }

@@ -99,8 +99,8 @@
 
 .btn-actions {
     color: var(--var-preto);
+    background-color: var(--var-branco);
     border: none;
-    display: block;
     font-family: 'Material Icons', sans-serif;
     font-size: 1.6rem;
     padding: 0.8rem;
