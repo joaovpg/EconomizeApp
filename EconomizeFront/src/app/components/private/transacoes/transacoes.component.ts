@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GetSetService } from 'src/app/services/getSet.service';
-import { TransationsService } from 'src/app/services/transations.service';
+import { BankAccountsService } from 'src/app/services/bankAccounts.service';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { CategoriesModel } from 'src/app/models/categories.model';
 
 
 @Component({
@@ -11,17 +13,19 @@ import { TransationsService } from 'src/app/services/transations.service';
 })
 export class TransacoesComponent implements OnInit {
 
-  constructor(private transations: TransationsService, private getSet: GetSetService) { }
+  constructor(private transations: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
   data: any;
   chartOptions: any;
   subscription!: Subscription;
   basicOptions: any;
   account: Array<any> = new Array();
+  category: Array<any> = new Array();
   total: any;
 
   ngOnInit(): void {
 
     this.getContas();
+    this.getCategories();
 
     this.data = {
       labels: ['A', 'B', 'C'],
@@ -64,7 +68,26 @@ export class TransacoesComponent implements OnInit {
     }, erro => {
       console.log("Erro ao listar: ", erro);
     })
-
   }
+
+  getCategory(id: any) {
+    this.categories.getCategoryDetail(id).subscribe((category: any) => {
+      this.getSet.setCategory(category);
+      console.log("Teste conta", this.getSet.getCategory());
+    }, erro => {
+      console.log("Erro ao listar: ", erro);
+    })
+  }
+
+  getCategories() {
+    this.categories.getCategories().subscribe((categories: any) => {
+      this.category = categories;
+      console.log("Categorias listadas");
+    }, erro => {
+      console.log("Erro ao listar: ", erro);
+    })
+  }
+
+
 
 }

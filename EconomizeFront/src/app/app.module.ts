@@ -33,11 +33,12 @@ import { NgbdModalEmail } from './components/modal/resetEmail/reset-email';
 import { NgbdModalExcluirConta } from './components/modal/excluirConta/excluir-conta';
 import { NgbdModalExcluirTransacao } from './components/modal/excluirTransacao/excluir-transacao';
 import { NgbdModalEditarTransacao } from './components/modal/editarTransacao/editar-transacao';
-import { NgbdModalAdicionarTransacao } from './components/modal/adicionarTransacao/adicionar-transacao';
+import { NgbdModalAddTransation } from './components/modal/addTransation/addTransation';
 import { NgbdModalAddBankAccount } from './components/modal/addBankAccount/addBankAccount';
-import { NgbdModalEditBankAccount } from './components/private/transacoes/editBankAccount/editBankAccount';
+import { NgbdModalEditBankAccount } from './components/modal/editBankAccount/editBankAccount';
 import { NgbdModalDeleteBankAccount } from './components/modal/deleteBankAccount/deleteBankAccount';
-
+import { NgbdModaladdCategories } from './components/modal/addCategories/addCategories';
+import { NgbdModaleditCategories } from './components/modal/editCategories/editCategories';
 import { BtnActionsComponent } from './components/private/btn-actions/btn-actions.component';
 
 
@@ -61,11 +62,14 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     NgbdModalExcluirConta,
     NgbdModalExcluirTransacao,
     NgbdModalEditarTransacao,
-    NgbdModalAdicionarTransacao,
+    NgbdModalAddTransation,
     NgbdModalAddBankAccount,
     BtnActionsComponent,
     NgbdModalEditBankAccount,
-    NgbdModalDeleteBankAccount
+    NgbdModalDeleteBankAccount,
+    NgbdModaladdCategories,
+    NgbdModaleditCategories
+
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,9 @@ from django.db.models import fields
 from rest_framework import serializers
 from .models import Contas, Transations, Categorias
 
+
 class ContasSerializer(serializers.ModelSerializer):
-    
+
     nome = serializers.CharField(min_length=1, max_length=68)
     saldo = serializers.IntegerField()
     idUsuario = serializers.CharField(read_only=True)
@@ -17,12 +18,13 @@ class ContasSerializer(serializers.ModelSerializer):
             'idUsuario'
         ]
 
-        
+
 class ContasDetailSerializer(serializers.ModelSerializer):
 
     nome = serializers.CharField(min_length=1, max_length=68)
     saldo = serializers.IntegerField()
     idUsuario = serializers.CharField(read_only=True)
+    idCategorias = serializers.CharField(read_only=True)
 
     class Meta:
         model = Contas
@@ -30,8 +32,10 @@ class ContasDetailSerializer(serializers.ModelSerializer):
             'id',
             'nome',
             'saldo',
-            'idUsuario'
+            'idUsuario',
+            'idCategorias'
         ]
+
 
 class CategoriasSerializer(serializers.ModelSerializer):
 
@@ -43,6 +47,7 @@ class CategoriasSerializer(serializers.ModelSerializer):
                   'tipo',
                   ]
 
+
 class CategoriasDetailSerializer(serializers.ModelSerializer):
 
     tipo = serializers.CharField(min_length=1, max_length=68)
@@ -52,6 +57,7 @@ class CategoriasDetailSerializer(serializers.ModelSerializer):
         fields = ['id',
                   'tipo',
                   ]
+
 
 class TransationsSerializer(serializers.ModelSerializer):
 
@@ -70,7 +76,8 @@ class TransationsSerializer(serializers.ModelSerializer):
                   'idCategorias',
                   'idUsuario',
                   'idConta'
-            ]
+                  ]
+
 
 class TransationsDetailSerializer(serializers.ModelSerializer):
 
@@ -89,4 +96,4 @@ class TransationsDetailSerializer(serializers.ModelSerializer):
                   'idCategorias',
                   'idUsuario',
                   'idConta'
-            ]
+                  ]

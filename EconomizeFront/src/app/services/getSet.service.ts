@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Accounts } from '../models/accounts.model';
+import { CategoriesModel } from '../models/categories.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { Accounts } from '../models/accounts.model';
 export class GetSetService {
 
   account: Accounts = new Accounts();
+  category: CategoriesModel = new CategoriesModel();
 
   constructor() { }
 
@@ -52,5 +54,15 @@ export class GetSetService {
     return this.account;
   }
 
+
+  setCategory(categories: CategoriesModel) {
+    this.category.id = categories.id;
+    this.category.tipo = categories.tipo;
+
+  }
+
+  getCategory() {
+    return this.category;
+  }
 }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Accounts } from 'src/app/models/accounts.model';
 import { GetSetService } from 'src/app/services/getSet.service';
-import { TransationsService } from 'src/app/services/transations.service';
+import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 
 @Component({
     selector: 'ngbd-modal-editBankAccount',
@@ -15,9 +15,8 @@ export class NgbdModalEditBankAccount implements OnInit {
     closeResult = '';
     account: Accounts = new Accounts();
     id: any;
-    test: any;
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: GetSetService, private transation: TransationsService) {
+    constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: GetSetService, private transation: BankAccountsService) {
         // customize default values of modals used by this component tree
         config.backdrop = true;
         config.keyboard = true;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Accounts } from 'src/app/models/accounts.model';
-import { TransationsService } from 'src/app/services/transations.service';
+import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 
 @Component({
     selector: 'ngbd-modal-addBankAccount',
@@ -14,7 +14,7 @@ export class NgbdModalAddBankAccount {
     accounts: Accounts = new Accounts
     closeResult = '';
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private transation: TransationsService) {
+    constructor(config: NgbModalConfig, private modalService: NgbModal, private transation: BankAccountsService) {
         // customize default values of modals used by this component tree
         config.backdrop = true;
         config.keyboard = true;

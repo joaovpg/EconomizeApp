@@ -4,36 +4,35 @@
             <form class="modal-form">
                 <div class="input-area descricao">
                     <label class="form-label" for="descricao">title</label>
-                    <input class="form_control" type="text" placeholder="Descrição da transação">
+                    <input class="form_control" type="text" placeholder="Descrição da transação"
+                        [(ngModel)]="transationModel.descricao" name="descricao">
                 </div>
                 <div class="input-area transacao">
                     <select class="form-transacao">
-                        <option value="valor1">Despeza</option>
-                        <option value="valor2" selected>Receita</option>
+                        <option value="despeza">Despeza</option>
+                        <option value="receita" selected>Receita</option>
                     </select>
                 </div>
                 <div class="input-area valor">
                     <label class="form-label" for="valor">attach_money</label>
-                    <input class="form_control" name="valor" type="number" step="0.01" placeholder="Valor">
+                    <input class="form_control" name="valor" type="number" step="0.01" placeholder="Valor"
+                        [(ngModel)]="transationModel.valor">
                 </div>
                 <div class="input-area data">
                     <label class="form-label" for="data">insert_invitation</label>
-                    <input class="form_control" name="data" type="date" placeholder="Data">
+                    <input class="form_control" name="data" type="date" placeholder="Data"
+                        [(ngModel)]="transationModel.data">
                 </div>
                 <div class="input-area conta">
                     <label class="form-label">account_balance</label>
-                    <select name="Contas" class="form_select">
-                        <option value="valor1">Carteira</option>
-                        <option value="valor2" selected>Conta Poupança</option>
-                        <option value="valor3">Conta corrente</option>
+                    <select name="accounts" class="form_select">
+                        <option *ngFor="let item of accountArray" [value]="item.id">{{item.nome}}</option>
                     </select>
                 </div>
                 <div class="input-area categoria">
                     <label class="form-label">category</label>
-                    <select name="categoria" class="form_select">
-                        <option value="valor1">Alimentação</option>
-                        <option value="valor2" selected>Educação</option>
-                        <option value="valor3">Contas fixas</option>
+                    <select name="category" class="form_select">
+                        <option *ngFor="let item of categoryArray" [value]="item.id">{{item.tipo}}</option>
                     </select>
                 </div>
             </form>
