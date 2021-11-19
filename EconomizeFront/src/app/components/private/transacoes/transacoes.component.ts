@@ -59,8 +59,6 @@ export class TransacoesComponent implements OnInit {
   }
 
   getAccount(id: any) {
-    console.log("Elemento filho: ", id);
-
     this.transations.getAccountDetail(id).subscribe((account: any) => {
       console.log("Conta: ", account)
       this.getSet.setAccount(account);
@@ -72,8 +70,9 @@ export class TransacoesComponent implements OnInit {
 
   getCategory(id: any) {
     this.categories.getCategoryDetail(id).subscribe((category: any) => {
+      console.log("Categoria: ", category)
       this.getSet.setCategory(category);
-      console.log("Teste conta", this.getSet.getCategory());
+      console.log("Teste categoria", this.getSet.getCategory());
     }, erro => {
       console.log("Erro ao listar: ", erro);
     })

@@ -5,15 +5,15 @@
                 <div class="input-area descricao">
                     <label class="form-label" for="descricao">category</label>
                     <input class="form_control" type="text" placeholder="Categoria" name="category"
-                        value="{{category.tipo}}" [(ngModel)]="category.tipo">
+                        value="{{categoryModel.tipo}}" [(ngModel)]="categoryModel.tipo">
                 </div>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="modal-btnCancelar" (click)="d('Cross click')">Cancelar</button>
-            <button type="button" class="modal-btnSalvar" (click)="createCategories()">Adicionar categoria</button>
+            <button type="button" class="modal-btnSalvar" (click)="updateCategory()">Editar categoria</button>
         </div>
     </div>
 </ng-template>
 
-<button type="button" (click)="open(content)" class="btn-actions">category</button>
+<button type="button" (click)="open(content)" class="btn-actions">edit</button>

@@ -12,7 +12,7 @@ import { GetSetService } from 'src/app/services/getSet.service';
     providers: [NgbModalConfig, NgbModal]
 })
 export class NgbdModaleditCategories implements OnInit {
-    category: CategoriesModel = new CategoriesModel();
+    categoryModel: CategoriesModel = new CategoriesModel();
     closeResult = '';
 
     constructor(config: NgbModalConfig, private modalService: NgbModal, private categories: CategoriesService, private getSet: GetSetService) {
@@ -34,12 +34,16 @@ export class NgbdModaleditCategories implements OnInit {
     }
 
     getCategoryDetail() {
+        this.categoryModel = this.getSet.getCategory();
+        console.log("Teste categoria", this.getSet.getCategory());
         console.log(this.getSet.getCategory());
     }
 
-    createCategories() {
-        this.categories.createCategory(this.category).subscribe(() => {
-            console.log("Categoria criada com sucesso");
+    updateCategory() {
+        let id = this.getSet.getCategory().id;
+        console.log(id);
+        this.categories.updateCategory(id, this.categoryModel).subscribe(() => {
+            console.log("Categoria atualizada com sucesso");
         }, erro => {
             console.log("Erro ao criar categoria: ", erro);
         });

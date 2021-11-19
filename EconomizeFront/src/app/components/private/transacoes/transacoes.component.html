@@ -62,11 +62,11 @@
                     <tr *ngFor="let item of category" class="dashboard__table__row align-right">
                         <th scope="row">{{item.tipo}}</th>
                         <td class="dashboard__table__icons">
-                            <ngbd-modal-editBankAccount class="dashboard__table__icons dashboard__account__icons"
-                                id="{{item.id}}" (click)="getCategory(item.id)">
-                            </ngbd-modal-editBankAccount>
-                            <ngbd-modal-deleteBankAccount class="dashboard__table__icons dashboard__account__icons">
-                            </ngbd-modal-deleteBankAccount>
+                            <ngbd-modal-editCategories class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="getCategory(item.id)"></ngbd-modal-editCategories>
+                            <ngbd-modal-deleteCategories class="dashboard__table__icons dashboard__account__icons"
+                                (click)="getCategory(item.id)">
+                            </ngbd-modal-deleteCategories>
                         </td>
                     </tr>
                 </table>

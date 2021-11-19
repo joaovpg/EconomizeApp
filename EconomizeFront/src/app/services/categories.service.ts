@@ -29,22 +29,12 @@ export class CategoriesService {
     return this.http.get(this.api + 'categorias/' + id, { headers: this.headers })
   }
 
-  // updtAccount(id: any, conta: Accounts) {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${this.tokenAccess}`
-  //   });
+  updateCategory(id: any, category: CategoriesModel) {
+    return this.http.put(this.api + 'categorias/' + id, category, { headers: this.headers })
+  }
 
-  //   return this.http.put(this.api + 'contas/' + id, conta, { headers: headers })
-  // }
-
-  // deleteAccount(id: any) {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${this.tokenAccess}`
-  //   });
-
-  //   return this.http.delete(this.api + "contas/" + id, { headers: headers });
-  // }
+  deleteCategory(id: any) {
+    return this.http.delete(this.api + "categorias/" + id, { headers: this.headers });
+  }
 
 }

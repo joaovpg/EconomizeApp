@@ -39,6 +39,8 @@ import { NgbdModalEditBankAccount } from './components/modal/editBankAccount/edi
 import { NgbdModalDeleteBankAccount } from './components/modal/deleteBankAccount/deleteBankAccount';
 import { NgbdModaladdCategories } from './components/modal/addCategories/addCategories';
 import { NgbdModaleditCategories } from './components/modal/editCategories/editCategories';
+import { NgbdModalDeleteCategories } from './components/modal/deleteCategories/deleteCategories';
+
 import { BtnActionsComponent } from './components/private/btn-actions/btn-actions.component';
 
 
@@ -68,7 +70,8 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     NgbdModalEditBankAccount,
     NgbdModalDeleteBankAccount,
     NgbdModaladdCategories,
-    NgbdModaleditCategories
+    NgbdModaleditCategories,
+    NgbdModalDeleteCategories
 
   ],
   imports: [
