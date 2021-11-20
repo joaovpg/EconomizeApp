@@ -4,6 +4,7 @@ import { GetSetService } from 'src/app/services/getSet.service';
 import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { CategoriesModel } from 'src/app/models/categories.model';
+import { TransationsService } from 'src/app/services/transations.service';
 
 
 @Component({
@@ -13,18 +14,22 @@ import { CategoriesModel } from 'src/app/models/categories.model';
 })
 export class TransacoesComponent implements OnInit {
 
-  constructor(private transations: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
+  constructor(private transations: TransationsService, private accounts: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
+
+  date: Date = new Date();
   data: any;
   chartOptions: any;
   subscription!: Subscription;
   basicOptions: any;
+  transation: Array<any> = new Array();
   account: Array<any> = new Array();
   category: Array<any> = new Array();
   total: any;
 
   ngOnInit(): void {
 
-    this.getContas();
+    this.getTransations();
+    this.getAccounts();
     this.getCategories();
 
     this.data = {
@@ -47,9 +52,18 @@ export class TransacoesComponent implements OnInit {
     };
   }
 
+  getTransations() {
+    this.transations.getTransations().subscribe((transations: any) => {
+      console.log("Transações listadas");
+      this.transation = transations;
+    }, error => {
+      console.log("Erro ao listar: ", error);
+    })
+  }
 
-  getContas() {
-    this.transations.getAccounts().subscribe((accounts: any) => {
+
+  getAccounts() {
+    this.accounts.getAccounts().subscribe((accounts: any) => {
       this.account = accounts;
       this.total += accounts;
       console.log(this.account);
@@ -58,9 +72,28 @@ export class TransacoesComponent implements OnInit {
     })
   }
 
+  getCategories() {
+    this.categories.getCategories().subscribe((categories: any) => {
+      this.category = categories;
+      console.log("Categorias listadas");
+    }, erro => {
+      console.log("Erro ao listar: ", erro);
+    })
+  }
+
+  getTransation(id: any) {
+    this.transations.getTransationDetail(id).subscribe((transation: any) => {
+      console.log("Transação: ", transation);
+      this.getSet.setTransation(transation);
+      console.log("GET: ", this.getSet.getTransation());
+    }, error => {
+      console.log("Erro ao listar: ", error);
+    })
+  }
+
   getAccount(id: any) {
-    this.transations.getAccountDetail(id).subscribe((account: any) => {
-      console.log("Conta: ", account)
+    this.accounts.getAccountDetail(id).subscribe((account: any) => {
+      console.log("Conta: ", account);
       this.getSet.setAccount(account);
       console.log("Teste conta", this.getSet.getAccount());
     }, erro => {
@@ -77,16 +110,5 @@ export class TransacoesComponent implements OnInit {
       console.log("Erro ao listar: ", erro);
     })
   }
-
-  getCategories() {
-    this.categories.getCategories().subscribe((categories: any) => {
-      this.category = categories;
-      console.log("Categorias listadas");
-    }, erro => {
-      console.log("Erro ao listar: ", erro);
-    })
-  }
-
-
 
 }

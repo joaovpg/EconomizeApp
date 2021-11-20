@@ -7,27 +7,26 @@ import { GetSetService } from 'src/app/services/getSet.service';
 import { TransationsService } from 'src/app/services/transations.service';
 
 @Component({
-    selector: 'ngbd-modal-addTransation',
-    templateUrl: './addTransation.html',
-    styleUrls: ['./addTransation.css'],
+    selector: 'ngbd-modal-editTransation',
+    templateUrl: './editTransation.html',
+    styleUrls: ['./editTransation.css'],
     // add NgbModalConfig and NgbModal to the component providers
     providers: [NgbModalConfig, NgbModal]
 })
-export class NgbdModalAddTransation implements OnInit {
-
-    userId = this.getSet.getId();
+export class NgbdModalEditTransation implements OnInit {
+    closeResult = '';
+    transation: TransationsModel = new TransationsModel();
     accountArray: Array<any> = new Array();
     categoryArray: Array<any> = new Array();
-    transationModel: TransationsModel = new TransationsModel();
-    closeResult = '';
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private transation: TransationsService, private account: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) {
+    constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: GetSetService, private transations: TransationsService, private account: BankAccountsService, private categories: CategoriesService) {
         // customize default values of modals used by this component tree
         config.backdrop = true;
         config.keyboard = true;
     }
 
     ngOnInit() {
+        this.getTransation();
         this.getAccounts();
         this.getCategories();
     }
@@ -36,17 +35,26 @@ export class NgbdModalAddTransation implements OnInit {
         this.modalService.open(content);
     }
 
-    createTransation() {
-        this.transationModel.idUsuario = this.userId;
-        console.log("transação: ", this.transationModel);
-        this.transation.createTransation(this.transationModel).subscribe(() => {
-            console.log("Criado com sucesso");
+    dismissaAll(reason: any) {
+        this.modalService.dismissAll(reason);
+    }
+
+    getTransation() {
+        this.transation = this.getSet.getTransation();
+    }
+
+    putTransation() {
+        let id = this.getSet.getTransation().id;
+        this.transations.updateTransation(id, this.transation).subscribe((transations) => {
+            console.log("Atualizado: ", transations);
+
         }, erro => {
-            console.log("Erro ao criar: ", erro);
+            console.log("Erro ao atualizar: ", erro);
         })
-        window.location.reload();
+        // window.location.reload();
         this.dismissaAll('');
     }
+
 
     getAccounts() {
         this.account.getAccounts().subscribe((accounts: any) => {
@@ -67,7 +75,7 @@ export class NgbdModalAddTransation implements OnInit {
         })
     }
 
-    dismissaAll(reason: any) {
-        this.modalService.dismissAll(reason);
-    }
+
+
+
 }

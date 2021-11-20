@@ -22,7 +22,7 @@ class ContasSerializer(serializers.ModelSerializer):
 class ContasDetailSerializer(serializers.ModelSerializer):
 
     nome = serializers.CharField(min_length=1, max_length=68)
-    saldo = serializers.IntegerField()
+    saldo = serializers.DecimalField(max_digits=19, decimal_places=2)
     idUsuario = serializers.CharField(read_only=True)
     idCategorias = serializers.CharField(read_only=True)
 
@@ -62,7 +62,7 @@ class CategoriasDetailSerializer(serializers.ModelSerializer):
 class TransationsSerializer(serializers.ModelSerializer):
 
     descricao = serializers.CharField(min_length=1, max_length=68)
-    valor = serializers.IntegerField()
+    valor = serializers.DecimalField(max_digits=19, decimal_places=2)
     data = serializers.DateField()
     tipo = serializers.CharField(min_length=1, max_length=50)
 

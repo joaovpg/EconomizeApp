@@ -14,7 +14,6 @@ import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 export class NgbdModalEditBankAccount implements OnInit {
     closeResult = '';
     account: Accounts = new Accounts();
-    id: any;
 
     constructor(config: NgbModalConfig, private modalService: NgbModal, private getSet: GetSetService, private transation: BankAccountsService) {
         // customize default values of modals used by this component tree

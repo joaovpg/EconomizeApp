@@ -31,8 +31,8 @@ import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 // Modais
 import { NgbdModalEmail } from './components/modal/resetEmail/reset-email';
 import { NgbdModalExcluirConta } from './components/modal/excluirConta/excluir-conta';
-import { NgbdModalExcluirTransacao } from './components/modal/excluirTransacao/excluir-transacao';
-import { NgbdModalEditarTransacao } from './components/modal/editarTransacao/editar-transacao';
+import { NgbdModalDeleteTransation } from './components/modal/deleteTransation/deleteTransation';
+import { NgbdModalEditTransation } from './components/modal/editTransation/editTransation';
 import { NgbdModalAddTransation } from './components/modal/addTransation/addTransation';
 import { NgbdModalAddBankAccount } from './components/modal/addBankAccount/addBankAccount';
 import { NgbdModalEditBankAccount } from './components/modal/editBankAccount/editBankAccount';
@@ -59,18 +59,25 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     TransacoesComponent,
     InvestimentosComponent,
     UserNotAuthComponent,
-    // Modais
+
+    // Other modals
     NgbdModalEmail,
     NgbdModalExcluirConta,
-    NgbdModalExcluirTransacao,
-    NgbdModalEditarTransacao,
+    BtnActionsComponent,
+
+    // Add modals
     NgbdModalAddTransation,
     NgbdModalAddBankAccount,
-    BtnActionsComponent,
-    NgbdModalEditBankAccount,
-    NgbdModalDeleteBankAccount,
     NgbdModaladdCategories,
+
+    // Edit modals
+    NgbdModalEditTransation,
+    NgbdModalEditBankAccount,
     NgbdModaleditCategories,
+
+    // Delete modals
+    NgbdModalDeleteTransation,
+    NgbdModalDeleteBankAccount,
     NgbdModalDeleteCategories
 
   ],

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Accounts } from '../models/accounts.model';
 import { CategoriesModel } from '../models/categories.model';
+import { TransationsModel } from '../models/transations.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class GetSetService {
 
   account: Accounts = new Accounts();
   category: CategoriesModel = new CategoriesModel();
+  transation: TransationsModel = new TransationsModel();
 
   constructor() { }
 
@@ -64,5 +66,22 @@ export class GetSetService {
   getCategory() {
     return this.category;
   }
+
+
+  setTransation(transations: TransationsModel) {
+    this.transation.id = transations.id;
+    this.transation.descricao = transations.descricao;
+    this.transation.valor = transations.valor;
+    this.transation.data = transations.data;
+    this.transation.tipo = transations.tipo;
+    this.transation.idUsuario = transations.idUsuario;
+    this.transation.idConta = transations.idConta;
+    this.transation.idCategorias = transations.idCategorias;
+  }
+
+  getTransation() {
+    return this.transation;
+  }
+
 }
 

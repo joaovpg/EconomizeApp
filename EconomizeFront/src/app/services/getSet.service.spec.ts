@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GetSetService } from './getSet.service';
 
-describe('TokensService', () => {
+describe('GetSetService', () => {
   let service: GetSetService;
 
   beforeEach(() => {

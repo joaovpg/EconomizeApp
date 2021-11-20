@@ -4,7 +4,7 @@ export class TransationsModel {
     valor!: Number;
     data!: Date;
     tipo!: string;
-    idUsuario!: Number;
+    idUsuario!: any;
     idConta!: Number;
     idCategorias!: Number;
 }

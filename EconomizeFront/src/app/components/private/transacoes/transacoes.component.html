@@ -3,7 +3,7 @@
     <div class="row justify-content-between align-items-center mes">
         <a href="#" class="mes__anterior">keyboard_arrow_left</a>
         <div class="mes__input col-md-10">
-            <input type="month" class="mes__control">
+            <input type="month" class="mes__control" value="{{date | date:'MM'}}">
         </div>
         <a href="#" class="mes__seguinte">keyboard_arrow_right</a>
         <hr>
@@ -86,17 +86,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="dashboard__table__row dashboard__table__gastos">
-                            <td>Jantar</td>
-                            <td>30/10/2021</td>
-                            <td>Alimentação</td>
-                            <td>Carteira</td>
-                            <td>R$ 31,90</td>
+                        <tr *ngFor="let item of transation" class="dashboard__table__row dashboard__table__gastos">
+                            <td>{{item.descricao}}</td>
+                            <td>{{item.data}}</td>
+                            <td>{{item.idCategorias}}</td>
+                            <td>{{item.idConta}}</td>
+                            <td>R$ {{item.valor}}</td>
                             <td class="dashboard__table__icons">
-                                <ngbd-modal-editar-transacao class="dashboard__table__icons">
-                                </ngbd-modal-editar-transacao>
-                                <ngbd-modal-excluir-transacao class="dashboard__table__icons">
-                                </ngbd-modal-excluir-transacao>
+                                <ngbd-modal-editTransation id="{{item.id}}" (click)="getTransation(item.id)"
+                                    class="dashboard__table__icons">
+                                </ngbd-modal-editTransation>
+                                <ngbd-modal-deleteTransation id="{{item.id}}" (click)="getTransation(item.id)"
+                                    class="dashboard__table__icons">
+                                </ngbd-modal-deleteTransation>
                             </td>
                         </tr>
                     </tbody>
