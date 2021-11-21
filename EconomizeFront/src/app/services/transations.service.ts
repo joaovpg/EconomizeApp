@@ -21,8 +21,8 @@ export class TransationsService {
     return this.http.post(this.api + 'transacoes/', transations, { headers: this.headers })
   }
 
-  getTransations() {
-    return this.http.get(this.api + 'transacoes/', { headers: this.headers })
+  getTransations(year: any, month: any) {
+    return this.http.get(this.api + 'transacoes/?year=' + year + '&month=' + month, { headers: this.headers })
   }
 
   getTransationDetail(id: any) {

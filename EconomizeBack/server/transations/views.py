@@ -4,10 +4,12 @@ from rest_framework import generics
 from .serializers import TransationsSerializer, ContasSerializer, CategoriasSerializer, ContasDetailSerializer, TransationsDetailSerializer, CategoriasDetailSerializer
 from .models import Categorias, Contas, Transations, User
 from rest_framework import permissions
-from .permissions import IsOwner
+from datetime import datetime
+from django_filters import rest_framework as filters
+from .filters import TransationsFilter
 # Create your views here.
 
- 
+
 class ListContasView(generics.ListCreateAPIView):
     queryset = Contas.objects.all()
     serializer_class = ContasSerializer
@@ -32,6 +34,7 @@ class ContasDetailView(generics.RetrieveUpdateDestroyAPIView):
  #   Filtra as informações pelo id do usuário
     def get_queryset(self):
         return self.queryset.filter(idUsuario=self.request.user)
+
 
 class ListCategoriasView(generics.ListCreateAPIView):
     queryset = Categorias.objects.all()
@@ -60,11 +63,14 @@ class CategoriasDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ListTransationsView(generics.ListCreateAPIView):
-    queryset = Transations.objects.all()
+    queryset = Transations.objects.all().order_by('data')
     serializer_class = TransationsSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    filterset_class = TransationsFilter
+    filters_backends = (filters.DjangoFilterBackend)
 
     def perform_create(self, serializer):
-         return serializer.save(idUsuario=self.request.user)
+        return serializer.save(idUsuario=self.request.user)
 
     def get_queryset(self):
         return self.queryset.filter(idUsuario=self.request.user)

@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GetSetService } from 'src/app/services/getSet.service';
 import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { CategoriesModel } from 'src/app/models/categories.model';
 import { TransationsService } from 'src/app/services/transations.service';
 
 
@@ -14,9 +13,13 @@ import { TransationsService } from 'src/app/services/transations.service';
 })
 export class TransacoesComponent implements OnInit {
 
+  curdate = new Date().getFullYear().toString() + '-' + (new Date().getMonth() + 1).toString();
+
+  year = this.curdate.slice(0, 4);
+  month = this.curdate.slice(5, 7);
+
   constructor(private transations: TransationsService, private accounts: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
 
-  date: Date = new Date();
   data: any;
   chartOptions: any;
   subscription!: Subscription;
@@ -27,7 +30,7 @@ export class TransacoesComponent implements OnInit {
   total: any;
 
   ngOnInit(): void {
-
+    this.setDate();
     this.getTransations();
     this.getAccounts();
     this.getCategories();
@@ -52,8 +55,12 @@ export class TransacoesComponent implements OnInit {
     };
   }
 
+  setDate() {
+    console.log('Data atual: ', this.curdate);
+  }
+
   getTransations() {
-    this.transations.getTransations().subscribe((transations: any) => {
+    this.transations.getTransations(this.year, this.month).subscribe((transations: any) => {
       console.log("Transações listadas");
       this.transation = transations;
     }, error => {
@@ -109,6 +116,15 @@ export class TransacoesComponent implements OnInit {
     }, erro => {
       console.log("Erro ao listar: ", erro);
     })
+  }
+
+  getValue(event: any) {
+    let newValue = event.target.value;
+    this.curdate = newValue;
+    this.year = this.curdate.slice(0, 4);
+    this.month = this.curdate.slice(5, 7);
+
+    return this.getTransations();
   }
 
 }
