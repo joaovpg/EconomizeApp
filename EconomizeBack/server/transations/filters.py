@@ -10,3 +10,14 @@ class TransationsFilter(filters.FilterSet):
     class Meta:
         model = Transations
         fields = ['data', 'year', 'month']
+
+
+class TotalsFilter(filters.FilterSet):
+    data = filters.DateFilter()
+    year = filters.NumberFilter(field_name='data', lookup_expr='year')
+    month = filters.NumberFilter(field_name='data', lookup_expr='month')
+    tipo = filters.CharFilter(field_name='tipo')
+
+    class Meta:
+        model = Transations
+        fields = ['data', 'year', 'month', 'tipo']

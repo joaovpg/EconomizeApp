@@ -51,7 +51,7 @@ export class NgbdModalEditTransation implements OnInit {
         }, erro => {
             console.log("Erro ao atualizar: ", erro);
         })
-        // window.location.reload();
+        window.location.reload();
         this.dismissaAll('');
     }
 

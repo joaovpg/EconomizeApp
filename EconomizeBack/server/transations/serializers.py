@@ -82,7 +82,7 @@ class TransationsSerializer(serializers.ModelSerializer):
 class TransationsDetailSerializer(serializers.ModelSerializer):
 
     descricao = serializers.CharField(min_length=1, max_length=68)
-    valor = serializers.IntegerField()
+    valor = serializers.DecimalField(max_digits=19, decimal_places=2)
     data = serializers.DateField()
     tipo = serializers.CharField(min_length=1, max_length=50)
 
@@ -96,4 +96,16 @@ class TransationsDetailSerializer(serializers.ModelSerializer):
                   'idCategorias',
                   'idUsuario',
                   'idConta'
+                  ]
+
+
+class getTotalsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Transations
+        fields = ['id',
+                  'valor',
+                  'data',
+                  'tipo',
+                  'idUsuario',
                   ]

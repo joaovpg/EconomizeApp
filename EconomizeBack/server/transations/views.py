@@ -1,12 +1,12 @@
 from django.urls import path, include
 from django.contrib.auth.models import User
-from rest_framework import generics
-from .serializers import TransationsSerializer, ContasSerializer, CategoriasSerializer, ContasDetailSerializer, TransationsDetailSerializer, CategoriasDetailSerializer
+from rest_framework import generics, viewsets
+from .serializers import TransationsSerializer, ContasSerializer, CategoriasSerializer, ContasDetailSerializer, TransationsDetailSerializer, CategoriasDetailSerializer, getTotalsSerializer
 from .models import Categorias, Contas, Transations, User
 from rest_framework import permissions
-from datetime import datetime
 from django_filters import rest_framework as filters
-from .filters import TransationsFilter
+from .filters import TransationsFilter, TotalsFilter
+from django.db.models import Sum
 # Create your views here.
 
 
@@ -86,5 +86,20 @@ class TransationsDetailView(generics.RetrieveUpdateDestroyAPIView):
         return serializer.save(idUsuario=self.request.user)
 
  #   Filtra as informações pelo id do usuário
+    def get_queryset(self):
+        return self.queryset.filter(idUsuario=self.request.user)
+
+
+class getTotalsView(generics.ListAPIView):
+    queryset = Transations.objects.all().order_by(
+        'data').annotate(total_price=Sum('valor'))
+    serializer_class = getTotalsSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    filterset_class = TotalsFilter
+    filters_backends = (filters.DjangoFilterBackend)
+
+    def perform_create(self, serializer):
+        return serializer.save(idUsuario=self.request.user)
+
     def get_queryset(self):
         return self.queryset.filter(idUsuario=self.request.user)

@@ -22,7 +22,7 @@ export class TransationsService {
   }
 
   getTransations(year: any, month: any) {
-    return this.http.get(this.api + 'transacoes/?year=' + year + '&month=' + month, { headers: this.headers })
+    return this.http.get(this.api + 'transacoes?year=' + year + '&month=' + month, { headers: this.headers })
   }
 
   getTransationDetail(id: any) {
