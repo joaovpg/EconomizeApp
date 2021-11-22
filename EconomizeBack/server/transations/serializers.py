@@ -7,7 +7,6 @@ from django.db.models import Sum
 class ContasSerializer(serializers.ModelSerializer):
 
     nome = serializers.CharField(min_length=1, max_length=68)
-    saldo = serializers.IntegerField()
     idUsuario = serializers.CharField(read_only=True)
 
     class Meta:
@@ -15,7 +14,6 @@ class ContasSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'nome',
-            'saldo',
             'idUsuario'
         ]
 

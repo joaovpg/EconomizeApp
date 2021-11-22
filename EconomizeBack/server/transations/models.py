@@ -7,7 +7,6 @@ from authentication.models import User
 class Contas(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
-    saldo = models.DecimalField(max_digits=19, decimal_places=2)
     idUsuario = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
 

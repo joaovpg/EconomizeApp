@@ -90,11 +90,7 @@
 /* Tamanhos dos inputs / seletores */
 
 .descricao {
- width: 300px;
-}
-
-.valor {
-    width: 160px;
+ width: 100%;
 }
 
 .btn-actions {

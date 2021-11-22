@@ -49,7 +49,6 @@ export class GetSetService {
   setAccount(accounts: Accounts) {
     this.account.id = accounts.id;
     this.account.nome = accounts.nome;
-    this.account.saldo = accounts.saldo;
   }
 
   getAccount() {
