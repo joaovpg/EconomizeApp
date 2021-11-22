@@ -7,6 +7,7 @@ from rest_framework import permissions
 from django_filters import rest_framework as filters
 from .filters import TransationsFilter, TotalsFilter
 from django.db.models import Sum
+from rest_framework.response import Response
 # Create your views here.
 
 
@@ -94,6 +95,7 @@ class getTotalsView(generics.ListAPIView):
     queryset = Transations.objects.all().order_by(
         'data').annotate(total_price=Sum('valor'))
     serializer_class = getTotalsSerializer
+
     permission_classes = (permissions.IsAuthenticated,)
     filterset_class = TotalsFilter
     filters_backends = (filters.DjangoFilterBackend)
@@ -103,3 +105,5 @@ class getTotalsView(generics.ListAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(idUsuario=self.request.user)
+
+

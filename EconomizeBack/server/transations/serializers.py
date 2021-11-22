@@ -1,6 +1,7 @@
 from django.db.models import fields
 from rest_framework import serializers
 from .models import Contas, Transations, Categorias
+from django.db.models import Sum
 
 
 class ContasSerializer(serializers.ModelSerializer):

@@ -4,6 +4,8 @@ import { GetSetService } from 'src/app/services/getSet.service';
 import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TransationsService } from 'src/app/services/transations.service';
+import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
+import { Validators } from '@angular/forms';
 
 
 @Component({
@@ -27,13 +29,17 @@ export class TransacoesComponent implements OnInit {
   transation: Array<any> = new Array();
   account: Array<any> = new Array();
   category: Array<any> = new Array();
-  total: any;
+  despesa: Array<any> = new Array();
+  totalReceita: Array<any> = new Array();
+
+  totalDespesa: any;
 
   ngOnInit(): void {
     this.setDate();
     this.getTransations();
     this.getAccounts();
     this.getCategories();
+    this.getTotalDespesa();
 
     this.data = {
       labels: ['A', 'B', 'C'],
@@ -72,7 +78,6 @@ export class TransacoesComponent implements OnInit {
   getAccounts() {
     this.accounts.getAccounts().subscribe((accounts: any) => {
       this.account = accounts;
-      this.total += accounts;
       console.log(this.account);
     }, err => {
       console.log("Erro ao listar: ", err);
@@ -125,6 +130,23 @@ export class TransacoesComponent implements OnInit {
     this.month = this.curdate.slice(5, 7);
 
     return this.getTransations();
+  }
+
+  getTotalDespesa() {
+    this.transations.getTotalDespesa(this.year, this.month).subscribe((despesas: any) => {
+      this.despesa = despesas;
+
+      let length = this.despesa.length;
+      let totalDespesa = 0
+
+      for (let i = 0; i < length; i++) {
+        totalDespesa += Number(this.despesa[i].valor);
+        console.log("Array: ", this.despesa[i].valor);
+        console.log("Total valor: ", totalDespesa);
+      }
+
+      return this.totalDespesa = totalDespesa;
+    })
   }
 
 }
