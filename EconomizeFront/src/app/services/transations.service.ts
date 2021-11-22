@@ -37,8 +37,8 @@ export class TransationsService {
     return this.http.delete(this.api + "transacoes/" + id, { headers: this.headers });
   }
 
-  getTotalDespesa(year: any, month: any) {
-    return this.http.get(this.api + 'transacoes?tipo=Despesa&year=' + year + '&month=' + month, { headers: this.headers });
+  getTotal(tipo: any, year: any, month: any) {
+    return this.http.get(this.api + 'transacoes/total?tipo=' + tipo + '&year=' + year + '&month=' + month, { headers: this.headers });
   }
 
 }

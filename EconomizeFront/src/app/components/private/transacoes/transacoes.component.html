@@ -14,18 +14,18 @@
                 <table class="table table-borderless dashboard__table">
                     <tr class="dashboard__table__row align-right">
                         <th scope="row">Receitas</th>
-                        <td>R$ 3226,45</td>
+                        <td>R$ {{totalReceita}}</td>
                     </tr>
                     <tr class="dashboard__table__row align-right">
                         <th scope="row">Despesas</th>
-                        <td>R$ {{totalDespesa}}</td>
+                        <td>- R$ {{totalDespesa}}</td>
                     </tr>
                 </table>
                 <hr>
                 <table class="table table-borderless dashboard__table">
                     <tr class="dashboard__table__row align-right">
                         <th scope="row">Total</th>
-                        <td>R$ 1584,49</td>
+                        <td>R$ {{valorTotal}}</td>
                     </tr>
                 </table>
             </div>
@@ -89,7 +89,7 @@
                             <td>{{item.data}}</td>
                             <td>{{item.idCategorias}}</td>
                             <td>{{item.idConta}}</td>
-                            <td>R$ {{item.valor}}</td>
+                            <td class="{{item.tipo}}Style">R$ {{item.valor}}</td>
                             <td class="dashboard__table__icons">
                                 <ngbd-modal-editTransation id="{{item.id}}" (click)="getTransation(item.id)"
                                     class="dashboard__table__icons">

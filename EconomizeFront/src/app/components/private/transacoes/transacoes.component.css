@@ -146,9 +146,13 @@ hr {
     padding-bottom: 2.4rem;
 }
 
-.dashboard__account__icons {
+.DespesaStyle {
+    color: var(--var-vermelho) !important;
 }
 
+.ReceitaStyle {
+    color: var(--var-verde) !important;
+}
 
 .dashboard__account__values:hover {
     display: none;
