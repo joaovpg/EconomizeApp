@@ -69,7 +69,7 @@
                         <tr class="dashboard__table__row dashboard__table__titulo">
                             <th scope="col">Descrição</th>
                             <th scope="col">Data</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Conta</th>
                             <th scope="col">Valor</th>
                             <th scope="col">Ações</th>
@@ -78,7 +78,7 @@
                     <tbody>
                         <tr *ngFor="let item of transation" class="dashboard__table__row dashboard__table__gastos">
                             <td>{{item.descricao}}</td>
-                            <td>{{item.data}}</td>
+                            <td><input class="inputDate" type="date" value="{{item.data}}" disabled></td>
                             <td>{{item.idCategorias}}</td>
                             <td>{{item.idConta}}</td>
                             <td class="{{item.tipo}}Style">R$ {{item.valor}}</td>
@@ -104,7 +104,8 @@
                 <h3 class="dashboard__card__titulo">Gastos por categoria</h3>
                 <hr>
                 <div class="dashboard__charts">
-                    <p-chart type="pie" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}"></p-chart>
+                    <p-chart type="pie" [data]="dataPizza" [options]="chartOptions" [style]="{'width': '40%'}">
+                    </p-chart>
                 </div>
 
             </div>
@@ -114,7 +115,7 @@
                 <h3 class="dashboard__card__titulo">Análise mensal</h3>
                 <hr>
                 <div class="dashboard__charts">
-                    <p-chart type="line" [data]="data" [options]="basicOptions"></p-chart>
+                    <p-chart type="line" [data]="dataLinear" [options]="basicOptions"></p-chart>
                 </div>
             </div>
         </div>

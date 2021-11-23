@@ -20,7 +20,8 @@ export class TransacoesComponent implements OnInit {
 
   constructor(private transations: TransationsService, private accounts: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
 
-  data: any;
+  dataLinear: any;
+  dataPizza: any;
   chartOptions: any;
   subscription!: Subscription;
   basicOptions: any;
@@ -42,7 +43,22 @@ export class TransacoesComponent implements OnInit {
     this.getCategories();
     this.getTotais();
 
-    this.data = {
+    this.dataLinear = {
+      labels: ['01-11-2021', '12-11-2021', '21-11-2021', '22-11-2021'],
+      datasets: [
+        {
+          data: [3000, 2900, 2900 - 10 + 3 + 100, 1000],
+          backgroundColor: [
+            "#42A5F5"
+          ],
+          hoverBackgroundColor: [
+            "#64B5F6"
+          ]
+        }
+      ]
+    };
+
+    this.dataPizza = {
       labels: ['A', 'B', 'C'],
       datasets: [
         {

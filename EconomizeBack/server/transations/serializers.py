@@ -21,7 +21,6 @@ class ContasSerializer(serializers.ModelSerializer):
 class ContasDetailSerializer(serializers.ModelSerializer):
 
     nome = serializers.CharField(min_length=1, max_length=68)
-    saldo = serializers.DecimalField(max_digits=19, decimal_places=2)
     idUsuario = serializers.CharField(read_only=True)
     idCategorias = serializers.CharField(read_only=True)
 
@@ -30,7 +29,6 @@ class ContasDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'nome',
-            'saldo',
             'idUsuario',
             'idCategorias'
         ]

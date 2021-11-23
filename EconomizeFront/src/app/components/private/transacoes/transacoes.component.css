@@ -154,6 +154,15 @@ hr {
     color: var(--var-verde) !important;
 }
 
+.inputDate {
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-family: var(--fonte-karla);
+    color: var(--var-preto);
+    width: 125px;
+}
+
 .dashboard__account__values:hover {
     display: none;
 }
