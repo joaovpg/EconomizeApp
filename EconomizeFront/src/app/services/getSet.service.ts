@@ -11,7 +11,7 @@ export class GetSetService {
   account: Accounts = new Accounts();
   category: CategoriesModel = new CategoriesModel();
   transation: TransationsModel = new TransationsModel();
-  categoriesArray: Array<any> = new Array();
+  totalCategory: any;
 
   constructor() { }
 
@@ -83,12 +83,12 @@ export class GetSetService {
     return this.transation;
   }
 
-  setCategoryArray(categories: any) {
-    this.categoriesArray = categories;
+  setTotalCategory(categories: any) {
+    window.localStorage.setItem('totalCategory', categories);
   }
 
-  getCategoryArray() {
-    return this.categoriesArray;
+  getTotalCategory() {
+    return window.localStorage.getItem('totalCategory'), window.localStorage.removeItem('totalCategory');
   }
 
 }

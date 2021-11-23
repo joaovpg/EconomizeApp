@@ -4,7 +4,6 @@ import { GetSetService } from 'src/app/services/getSet.service';
 import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TransationsService } from 'src/app/services/transations.service';
-import { newArray } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -34,10 +33,15 @@ export class TransacoesComponent implements OnInit {
   despesas: Array<any> = new Array();
   categoriesArray: Array<any> = new Array();
   colorsArray: Array<any> = new Array();
+  categoriesArrayId: Array<any> = new Array();
   totalDespesa = 0;
   totalReceita = 0;
   valorTotal = 0;
   color!: string;
+  ArrayCategory: Array<any> = new Array();
+  categoryTotal: Array<any> = new Array();
+  totalCategoria: any;
+  valorTotalCategoria: Array<any> = new Array();
 
   ngOnInit(): void {
     this.valorTotal = 0;
@@ -96,11 +100,28 @@ export class TransacoesComponent implements OnInit {
       this.categoriesArray = [];
 
       for (let i = 0; i < length; i++) {
+
+        this.transations.getTotalCategory(this.category[i].id, this.year, this.month).subscribe((categoria: any) => {
+          this.ArrayCategory = categoria;
+
+          let length = this.despesas.length;
+          var totalCategoria = 0
+
+          for (let i = 0; i < length; i++) {
+            totalCategoria += Number(this.ArrayCategory[i].valor);
+          }
+          console.log('aaaa ' + totalCategoria);
+
+          this.totalCategoria[i] = totalCategoria;
+        })
+
+
         this.categoriesArray[i] = this.category[i].tipo;
         this.colorsArray[i] = this.getRandomColor();
       }
 
-      this.createGraph(this.categoriesArray, this.colorsArray);
+
+      this.createGraph(this.categoriesArray, this.colorsArray, this.getValorTotalCategoria());
 
     }, erro => {
       console.log("Erro ao listar: ", erro);
@@ -171,12 +192,12 @@ export class TransacoesComponent implements OnInit {
     })
   }
 
-  createGraph(labels: any, colors: any) {
+  createGraph(labels: any, colors: any, total: any) {
     this.dataPizza = {
       labels: labels,
       datasets: [
         {
-          data: [300, 50, 100, 30, 50],
+          data: total,
           backgroundColor: colors,
         }
       ]
@@ -191,6 +212,17 @@ export class TransacoesComponent implements OnInit {
     }
     return this.color;
   }
+
+  setValorTotalCategoria(valorTotal: any) {
+    this.valorTotalCategoria.push(valorTotal);
+    console.log("teste", this.valorTotalCategoria);
+  }
+
+  getValorTotalCategoria() {
+    console.log("teste", this.valorTotalCategoria);
+    return this.valorTotalCategoria;
+  }
+
 }
 
 
