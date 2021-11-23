@@ -4,6 +4,7 @@ import { GetSetService } from 'src/app/services/getSet.service';
 import { BankAccountsService } from 'src/app/services/bankAccounts.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TransationsService } from 'src/app/services/transations.service';
+import { newArray } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class TransacoesComponent implements OnInit {
 
   constructor(private transations: TransationsService, private accounts: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
 
+  labels: any;
   dataLinear: any;
   dataPizza: any;
   chartOptions: any;
@@ -30,10 +32,12 @@ export class TransacoesComponent implements OnInit {
   category: Array<any> = new Array();
   receitas: Array<any> = new Array();
   despesas: Array<any> = new Array();
-
+  categoriesArray: Array<any> = new Array();
+  colorsArray: Array<any> = new Array();
   totalDespesa = 0;
   totalReceita = 0;
   valorTotal = 0;
+  color!: string;
 
   ngOnInit(): void {
     this.valorTotal = 0;
@@ -58,24 +62,6 @@ export class TransacoesComponent implements OnInit {
       ]
     };
 
-    this.dataPizza = {
-      labels: ['A', 'B', 'C'],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: [
-            "#42A5F5",
-            "#66BB6A",
-            "#FFA726"
-          ],
-          hoverBackgroundColor: [
-            "#64B5F6",
-            "#81C784",
-            "#FFB74D"
-          ]
-        }
-      ]
-    };
   }
 
   setDate() {
@@ -105,6 +91,17 @@ export class TransacoesComponent implements OnInit {
     this.categories.getCategories().subscribe((categories: any) => {
       this.category = categories;
       console.log("Categorias listadas");
+
+      let length = this.category.length;
+      this.categoriesArray = [];
+
+      for (let i = 0; i < length; i++) {
+        this.categoriesArray[i] = this.category[i].tipo;
+        this.colorsArray[i] = this.getRandomColor();
+      }
+
+      this.createGraph(this.categoriesArray, this.colorsArray);
+
     }, erro => {
       console.log("Erro ao listar: ", erro);
     })
@@ -144,10 +141,6 @@ export class TransacoesComponent implements OnInit {
     return this.getTransations(), this.getTotais();
   }
 
-  getTotalDespesa() {
-
-  }
-
   getTotais() {
     this.transations.getTotal('Receita', this.year, this.month).subscribe((receitas: any) => {
       this.receitas = receitas;
@@ -177,4 +170,27 @@ export class TransacoesComponent implements OnInit {
       this.valorTotal -= totalDespesa;
     })
   }
+
+  createGraph(labels: any, colors: any) {
+    this.dataPizza = {
+      labels: labels,
+      datasets: [
+        {
+          data: [300, 50, 100, 30, 50],
+          backgroundColor: colors,
+        }
+      ]
+    };
+  }
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    this.color = '#'
+    for (var i = 0; i < 6; i++) {
+      this.color += letters[Math.floor(Math.random() * 16)];
+    }
+    return this.color;
+  }
 }
+
+

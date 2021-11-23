@@ -11,6 +11,7 @@ export class GetSetService {
   account: Accounts = new Accounts();
   category: CategoriesModel = new CategoriesModel();
   transation: TransationsModel = new TransationsModel();
+  categoriesArray: Array<any> = new Array();
 
   constructor() { }
 
@@ -80,6 +81,14 @@ export class GetSetService {
 
   getTransation() {
     return this.transation;
+  }
+
+  setCategoryArray(categories: any) {
+    this.categoriesArray = categories;
+  }
+
+  getCategoryArray() {
+    return this.categoriesArray;
   }
 
 }
