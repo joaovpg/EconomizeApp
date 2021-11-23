@@ -1,0 +1,110 @@
+.modal-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;   
+}
+
+/* Inputs e Labels */
+.input-area {
+    background-color: var(--var-cinza);
+    border-radius: 10px;
+    display: flex;
+    vertical-align: middle;
+    padding: 1.6rem;
+    margin: 0 0.8rem 0.8rem 0;
+}
+
+.form_control {
+    background-color: var(--var-cinza);
+    font-size: 1.6rem;
+    border: none;
+    outline: 0;
+    color: var(--var-preto);
+    font-weight: bold;
+    font-family: var(--fonte-karla);
+    width: 100%;
+}
+
+.form-label {
+    font-family: 'Material Icons', sans-serif;
+    font-size: 2.4rem;
+    padding: 0 1.6rem 0 0;
+    margin: 0;
+}
+/* Botões */
+
+.modal-btnCancelar,
+.modal-btnSalvar {
+    border-radius: 40px;
+    font-size: 1.6rem;
+    font-family: var(--fonte-karla);
+    padding: 1.6rem 2.4rem;
+    transition: all 200ms;
+}
+
+.modal-btnCancelar{
+    border: solid 1px var(--var-preto);
+    background-color: transparent;
+    color: var(--var-preto);
+}
+
+.modal-btnSalvar{
+    border: solid 1px var(--var-azul);
+    background-color: var(--var-azul);
+    color: var(--var-branco);
+}
+
+.modal-btnSalvar:hover {
+    opacity: 0.8;
+}
+
+.modal-btnCancelar:hover{
+    border: solid 1px var(--var-vermelho);
+    color: var(--var-vermelho);
+}
+
+/* Seletores */
+
+.form-transacao {
+    border: none;
+    background-color: var(--var-vermelho);
+    color: var(--var-branco);
+    font-family: var(--fonte-karla);
+    font-size: 1.6rem;
+    outline: 0;
+    width: 100%;
+}
+
+.form_select {
+    border: none;
+    background-color: var(--var-cinza);
+    color: var(--var-preto);
+    font-size: 1.6rem;
+    font-family: var(--fonte-karla);
+    font-weight: bold;
+    outline: 0;
+    width: 100%;
+}
+
+/* Tamanhos dos inputs / seletores */
+
+.descricao {
+ width: 100%;
+}
+
+
+.btn-actions {
+    color: var(--var-branco);
+    border-radius: 100%;
+    border: none;
+    display: block;
+    font-family: 'Material Icons', sans-serif;
+    font-size: 2.4rem;
+    background-color: var(--var-vermelho);
+    padding: 0.8rem;
+}
+
+.btn-actions:hover {
+    opacity: 0.8;
+}

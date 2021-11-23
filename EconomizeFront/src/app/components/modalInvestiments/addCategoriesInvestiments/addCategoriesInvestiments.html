@@ -1,0 +1,19 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-container">
+        <div class="modal-body">
+            <form class="modal-form">
+                <div class="input-area descricao">
+                    <label class="form-label" for="descricao">category</label>
+                    <input class="form_control" type="text" placeholder="Categoria" name="category"
+                        [(ngModel)]="category.tipo">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="modal-btnCancelar" (click)="d('Cross click')">Cancelar</button>
+            <button type="button" class="modal-btnSalvar" (click)="createCategories()">Adicionar categoria</button>
+        </div>
+    </div>
+</ng-template>
+
+<button type="button" (click)="open(content)" class="btn-actions">category</button>

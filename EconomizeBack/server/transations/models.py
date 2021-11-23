@@ -25,4 +25,4 @@ class Transations(models.Model):
     idUsuario = models.ForeignKey(to=User, on_delete=models.CASCADE)
     idConta = models.ForeignKey(to=Contas, on_delete=models.CASCADE)
     idCategorias = models.ForeignKey(
-        to=Categorias, on_delete=models.CASCADE, default=True)
+    to=Categorias, on_delete=models.CASCADE, default=True)

@@ -42,6 +42,16 @@ import { NgbdModaleditCategories } from './components/modal/editCategories/editC
 import { NgbdModalDeleteCategories } from './components/modal/deleteCategories/deleteCategories';
 
 import { BtnActionsComponent } from './components/private/btn-actions/btn-actions.component';
+import { NgbdModalAddTransationInvestiments } from './components/modalInvestiments/addTransationInvestiments/addTransationInvestiments';
+import { NgbdModalAddBankAccountInvestiments } from './components/modalInvestiments/addBankAccountInvestiments/addBankAccountInvestiments';
+import { NgbdModaladdCategoriesInvestiments } from './components/modalInvestiments/addCategoriesInvestiments/addCategoriesInvestiments';
+import { NgbdModalEditTransationInvestiments } from './components/modalInvestiments/editTransationInvestiments/editTransationInvestiments';
+import { NgbdModalEditBankAccountInvestiments } from './components/modalInvestiments/editBankAccountInvestiments/editBankAccountInvestiments';
+import { NgbdModaleditCategoriesInvestiments } from './components/modalInvestiments/editCategoriesInvestiments/editCategoriesInvestiments';
+import { NgbdModalDeleteTransationInvestiments } from './components/modalInvestiments/deleteTransationInvestiments/deleteTransationInvestiments';
+import { NgbdModalDeleteBankAccountInvestiments } from './components/modalInvestiments/deleteBankAccountInvestiments/deleteBankAccountInvestiments';
+import { NgbdModalDeleteCategoriesInvestiments } from './components/modalInvestiments/deleteCategoriesInvestiments/deleteCategoriesInvestiments';
+import { BtnActionsInvestimentsComponent } from './components/private/btn-actionsInvestimentos/btn-actionsInvestimentos';
 
 
 @NgModule({
@@ -59,6 +69,7 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     TransacoesComponent,
     InvestimentosComponent,
     UserNotAuthComponent,
+    BtnActionsInvestimentsComponent,
 
     // Other modals
     NgbdModalEmail,
@@ -69,16 +80,25 @@ import { BtnActionsComponent } from './components/private/btn-actions/btn-action
     NgbdModalAddTransation,
     NgbdModalAddBankAccount,
     NgbdModaladdCategories,
+    NgbdModalAddTransationInvestiments,
+    NgbdModalAddBankAccountInvestiments,
+    NgbdModaladdCategoriesInvestiments,
 
     // Edit modals
     NgbdModalEditTransation,
     NgbdModalEditBankAccount,
     NgbdModaleditCategories,
+    NgbdModalEditTransationInvestiments,
+    NgbdModalEditBankAccountInvestiments,
+    NgbdModaleditCategoriesInvestiments,
 
     // Delete modals
     NgbdModalDeleteTransation,
     NgbdModalDeleteBankAccount,
-    NgbdModalDeleteCategories
+    NgbdModalDeleteCategories,
+    NgbdModalDeleteTransationInvestiments,
+    NgbdModalDeleteBankAccountInvestiments,
+    NgbdModalDeleteCategoriesInvestiments,
 
   ],
   imports: [

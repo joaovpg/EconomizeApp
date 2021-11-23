@@ -1,33 +1,31 @@
 <app-navbar-int></app-navbar-int>
 <div class="container">
     <div class="row justify-content-between align-items-center mes">
-        <a href="#" class="mes__anterior">keyboard_arrow_left</a>
-        <div class="mes__input col-md-10">
-            <input type="month" class="mes__control">
+        <div class="mes__input col-md-12">
+            <input type="month" class="mes__control" value="{{curdate}}" (change)="getValue($event)">
         </div>
-        <a href="#" class="mes__seguinte">keyboard_arrow_right</a>
         <hr>
     </div>
     <div class="row justify-content-between dashboard__container">
         <div class="col-md-3">
             <div class="dashboard">
-                <h3 class="dashboard__card__titulo">Gasto mensal</h3>
+                <h3 class="dashboard__card__titulo">Investimentos mensal</h3>
                 <hr>
                 <table class="table table-borderless dashboard__table">
                     <tr class="dashboard__table__row align-right">
-                        <th scope="row">Receitas</th>
-                        <td>R$ 3226,45</td>
+                        <th scope="row">Investimentos</th>
+                        <td>R$ {{totalReceita}}</td>
                     </tr>
                     <tr class="dashboard__table__row align-right">
-                        <th scope="row">Despezas</th>
-                        <td>R$ 1584,49</td>
+                        <th scope="row">Retirada</th>
+                        <td>- R$ {{totalDespesa}}</td>
                     </tr>
                 </table>
                 <hr>
                 <table class="table table-borderless dashboard__table">
                     <tr class="dashboard__table__row align-right">
                         <th scope="row">Total</th>
-                        <td>R$ 1584,49</td>
+                        <td>R$ {{valorTotal}}</td>
                     </tr>
                 </table>
             </div>
@@ -35,20 +33,31 @@
                 <h3 class="dashboard__card__titulo">Minhas contas</h3>
                 <hr>
                 <table class="table table-borderless dashboard__table">
-                    <tr class="dashboard__table__row align-right">
-                        <th scope="row">Carteira</th>
-                        <td>R$ 3226,45</td>
-                    </tr>
-                    <tr class="dashboard__table__row align-right">
-                        <th scope="row">Poupança</th>
-                        <td>R$ 1584,49</td>
+                    <tr *ngFor="let item of account" class="dashboard__table__row align-right">
+                        <th scope="row">{{item.nome}}</th>
+                        <td class="dashboard__table__icons">
+                            <ngbd-modal-editBankAccountInvestiments class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="getAccount(item.id)">
+                            </ngbd-modal-editBankAccountInvestiments>
+                            <ngbd-modal-deleteBankAccountInvestiments class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="getAccount(item.id)"></ngbd-modal-deleteBankAccountInvestiments>
+                        </td>
                     </tr>
                 </table>
+            </div>
+            <div class="dashboard">
+                <h3 class="dashboard__card__titulo">Categorias</h3>
                 <hr>
                 <table class="table table-borderless dashboard__table">
-                    <tr class="dashboard__table__row align-right">
-                        <th scope="row">Total</th>
-                        <td>R$ 1584,49</td>
+                    <tr *ngFor="let item of category" class="dashboard__table__row align-right">
+                        <th scope="row">{{item.tipo}}</th>
+                        <td class="dashboard__table__icons">
+                            <ngbd-modal-editCategoriesInvestiments class="dashboard__table__icons dashboard__account__icons"
+                                id="{{item.id}}" (click)="getCategory(item.id)"></ngbd-modal-editCategoriesInvestiments>
+                            <ngbd-modal-deleteCategoriesInvestiments class="dashboard__table__icons dashboard__account__icons"
+                                (click)="getCategory(item.id)">
+                            </ngbd-modal-deleteCategoriesInvestiments>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -60,22 +69,26 @@
                         <tr class="dashboard__table__row dashboard__table__titulo">
                             <th scope="col">Descrição</th>
                             <th scope="col">Data</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Conta</th>
                             <th scope="col">Valor</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="dashboard__table__row dashboard__table__gastos">
-                            <td>Jantar</td>
-                            <td>30/10/2021</td>
-                            <td>Alimentação</td>
-                            <td>Carteira</td>
-                            <td>R$ 31,90</td>
+                        <tr *ngFor="let item of transation" class="dashboard__table__row dashboard__table__gastos">
+                            <td>{{item.descricao}}</td>
+                            <td><input class="inputDate" type="date" value="{{item.data}}" disabled></td>
+                            <td>{{item.idCategorias}}</td>
+                            <td>{{item.idConta}}</td>
+                            <td class="{{item.tipo}}Style">R$ {{item.valor}}</td>
                             <td class="dashboard__table__icons">
-                                <a href="#">edit</a>
-                                <a href="#">delete</a>
+                                <ngbd-modal-editTransationInvestiments id="{{item.id}}" (click)="getTransation(item.id)"
+                                    class="dashboard__table__icons">
+                                </ngbd-modal-editTransationInvestiments>
+                                <ngbd-modal-deleteTransationInvestiments id="{{item.id}}" (click)="getTransation(item.id)"
+                                    class="dashboard__table__icons">
+                                </ngbd-modal-deleteTransationInvestiments>
                             </td>
                         </tr>
                     </tbody>
@@ -91,7 +104,8 @@
                 <h3 class="dashboard__card__titulo">Gastos por categoria</h3>
                 <hr>
                 <div class="dashboard__charts">
-                    <p-chart type="pie" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}"></p-chart>
+                    <p-chart type="pie" [data]="dataPizza" [options]="chartOptions" [style]="{'width': '40%'}">
+                    </p-chart>
                 </div>
 
             </div>
@@ -101,11 +115,11 @@
                 <h3 class="dashboard__card__titulo">Análise mensal</h3>
                 <hr>
                 <div class="dashboard__charts">
-                    <p-chart type="line" [data]="data" [options]="basicOptions"></p-chart>
+                    <p-chart type="line" [data]="dataLinear" [options]="basicOptions"></p-chart>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<app-btn-actions class="container-btn"></app-btn-actions>
+<app-btn-actionsInvestiments class="container-btn"></app-btn-actionsInvestiments>
 <app-rodape></app-rodape>
