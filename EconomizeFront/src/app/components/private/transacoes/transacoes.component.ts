@@ -20,6 +20,7 @@ export class TransacoesComponent implements OnInit {
 
   constructor(private transations: TransationsService, private accounts: BankAccountsService, private categories: CategoriesService, private getSet: GetSetService) { }
 
+  labels: any;
   dataLinear: any;
   dataPizza: any;
   chartOptions: any;
@@ -30,10 +31,17 @@ export class TransacoesComponent implements OnInit {
   category: Array<any> = new Array();
   receitas: Array<any> = new Array();
   despesas: Array<any> = new Array();
-
+  categoriesArray: Array<any> = new Array();
+  colorsArray: Array<any> = new Array();
+  categoriesArrayId: Array<any> = new Array();
   totalDespesa = 0;
   totalReceita = 0;
   valorTotal = 0;
+  color!: string;
+  ArrayCategory: Array<any> = new Array();
+  categoryTotal: Array<any> = new Array();
+  totalCategoria: any;
+  valorTotalCategoria: Array<any> = new Array();
 
   ngOnInit(): void {
     this.valorTotal = 0;
@@ -43,39 +51,6 @@ export class TransacoesComponent implements OnInit {
     this.getCategories();
     this.getTotais();
 
-    this.dataLinear = {
-      labels: ['01-11-2021', '12-11-2021', '21-11-2021', '22-11-2021'],
-      datasets: [
-        {
-          data: [3000, 2900, 2900 - 10 + 3 + 100, 1000],
-          backgroundColor: [
-            "#42A5F5"
-          ],
-          hoverBackgroundColor: [
-            "#64B5F6"
-          ]
-        }
-      ]
-    };
-
-    this.dataPizza = {
-      labels: ['A', 'B', 'C'],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: [
-            "#42A5F5",
-            "#66BB6A",
-            "#FFA726"
-          ],
-          hoverBackgroundColor: [
-            "#64B5F6",
-            "#81C784",
-            "#FFB74D"
-          ]
-        }
-      ]
-    };
   }
 
   setDate() {
@@ -105,6 +80,38 @@ export class TransacoesComponent implements OnInit {
     this.categories.getCategories().subscribe((categories: any) => {
       this.category = categories;
       console.log("Categorias listadas");
+
+      let length = this.category.length;
+      this.categoriesArray = [];
+
+      for (let i = 0; i < length; i++) {
+
+        this.transations.getTotalCategory(this.category[i].id, this.year, this.month).subscribe((categoria: any) => {
+          this.ArrayCategory = categoria;
+
+          let length = this.ArrayCategory.length;
+          var totalCategoria = 0;
+
+          for (let i = 0; i < length; i++) {
+            totalCategoria += Number(this.ArrayCategory[i].valor);
+          }
+          console.log('aaaa ' + totalCategoria);
+
+          this.getSet.setTotalCategory(i, totalCategoria);
+        })
+
+
+        this.categoriesArray[i] = this.category[i].tipo;
+        this.colorsArray[i] = this.getRandomColor();
+      }
+      this.totalCategoria = this.getSet.getTotalCategory();
+      console.log("tesste", this.totalCategoria);
+
+      console.log("array categoria: " + this.categoriesArrayId, "array cor: " + this.colorsArray);
+
+      this.createGraph(this.categoriesArray, this.colorsArray, this.totalCategoria);
+
+
     }, erro => {
       console.log("Erro ao listar: ", erro);
     })
@@ -141,11 +148,7 @@ export class TransacoesComponent implements OnInit {
     this.month = this.curdate.slice(5, 7);
 
     this.valorTotal = 0;
-    return this.getTransations(), this.getTotais();
-  }
-
-  getTotalDespesa() {
-
+    return this.getTransations(), this.getTotais(), this.getCategories();
   }
 
   getTotais() {
@@ -177,4 +180,38 @@ export class TransacoesComponent implements OnInit {
       this.valorTotal -= totalDespesa;
     })
   }
+
+  createGraph(labels: any, colors: any, total: any) {
+    this.dataPizza = {
+      labels: labels,
+      datasets: [
+        {
+          data: total,
+          backgroundColor: colors,
+        }
+      ]
+    };
+  }
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    this.color = '#'
+    for (var i = 0; i < 6; i++) {
+      this.color += letters[Math.floor(Math.random() * 16)];
+    }
+    return this.color;
+  }
+
+  setValorTotalCategoria(valorTotal: any) {
+    this.valorTotalCategoria.push(valorTotal);
+    console.log("teste", this.valorTotalCategoria);
+  }
+
+  getValorTotalCategoria() {
+    console.log("teste", this.valorTotalCategoria);
+    return this.valorTotalCategoria;
+  }
+
 }
+
+

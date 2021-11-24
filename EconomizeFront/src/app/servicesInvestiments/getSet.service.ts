@@ -11,6 +11,9 @@ export class GetSetService {
   account: Accounts = new Accounts();
   category: CategoriesModel = new CategoriesModel();
   investiment: InvestimentsModel = new InvestimentsModel();
+  totalCategory: Array<any> = new Array();
+  categoryArray: Array<any> = new Array();
+  colorsArray: Array<any> = new Array();
 
   constructor() { }
 
@@ -80,6 +83,32 @@ export class GetSetService {
 
   getTransation() {
     return this.investiment;
+  }
+
+
+
+  setTotalCategory(index: any, values: any) {
+    this.totalCategory[index] = values;
+  }
+
+  getTotalCategory() {
+    return this.totalCategory;
+  }
+
+  setCategoryArray(values: any) {
+    this.categoryArray = values;
+  }
+
+  getCategoryArray() {
+    return this.categoryArray;
+  }
+
+  setColorsArray(values: any) {
+    this.colorsArray = values;
+  }
+
+  getColorsArray() {
+    return this.colorsArray;
   }
 
 }

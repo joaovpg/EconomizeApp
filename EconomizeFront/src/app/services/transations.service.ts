@@ -41,4 +41,8 @@ export class TransationsService {
     return this.http.get(this.api + 'transacoes/total?tipo=' + tipo + '&year=' + year + '&month=' + month, { headers: this.headers });
   }
 
+  getTotalCategory(idCategorias: any, year: any, month: any) {
+    return this.http.get(this.api + 'transacoes/categoria-total?idCategorias=' + idCategorias + '&year=' + year + '&month=' + month + '&tipo=Despesa', { headers: this.headers });
+  }
+
 }

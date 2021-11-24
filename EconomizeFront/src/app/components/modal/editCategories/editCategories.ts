@@ -35,8 +35,6 @@ export class NgbdModaleditCategories implements OnInit {
 
     getCategoryDetail() {
         this.categoryModel = this.getSet.getCategory();
-        console.log("Teste categoria", this.getSet.getCategory());
-        console.log(this.getSet.getCategory());
     }
 
     updateCategory() {

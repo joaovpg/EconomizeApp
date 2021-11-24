@@ -1,11 +1,11 @@
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import generics, viewsets
-from .serializers import InvestimentsSerializer, ContasSerializer, CategoriasSerializer, ContasDetailSerializer, InvestimentsDetailSerializer, CategoriasDetailSerializer, getTotalsSerializer
+from .serializers import InvestimentsSerializer, ContasSerializer, CategoriasSerializer, ContasDetailSerializer, InvestimentsDetailSerializer, CategoriasDetailSerializer, getTotalsSerializer, getCategoryTotalSerializer
 from .models import Categoriass, Contass, Investimentos, User
 from rest_framework import permissions
 from django_filters import rest_framework as filters
-from .filters import InvestimentsFilter, TotalsFilter
+from .filters import InvestimentsFilter, TotalsFilter, CategoryTotalFilter
 from django.db.models import Sum
 from rest_framework.response import Response
 # Create your views here.
@@ -106,4 +106,18 @@ class getTotalsView(generics.ListAPIView):
     def get_queryset(self):
         return self.queryset.filter(idUsuario=self.request.user)
 
+class getCategoryTotalView(generics.ListAPIView):
+    queryset = Investimentos.objects.all().order_by(
+        'data')
+    serializer_class = getCategoryTotalSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
+    filterset_class = CategoryTotalFilter
+    filters_backends = (filters.DjangoFilterBackend)
+
+    def perform_create(self, serializer):
+        return serializer.save(idUsuario=self.request.user)
+
+    def get_queryset(self):
+        return self.queryset.filter(idUsuario=self.request.user)
 

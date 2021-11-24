@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ListContasView, ContasDetailView, ListInvestimentsView, InvestimentsDetailView, ListCategoriasView, CategoriasDetailView, getTotalsView
+from .views import ListContasView, ContasDetailView, ListInvestimentsView, InvestimentsDetailView, ListCategoriasView, CategoriasDetailView, getTotalsView, getCategoryTotalView
 
 urlpatterns = [
     path('contas/', ListContasView.as_view()),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('investiments/', ListInvestimentsView.as_view()),
     path('investiments/<int:id>', InvestimentsDetailView.as_view()),
     path('investiments/total', getTotalsView.as_view()),
+    path('investiments/categoria-total', getCategoryTotalView.as_view()),
 ]

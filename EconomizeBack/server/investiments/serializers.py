@@ -106,3 +106,14 @@ class getTotalsSerializer(serializers.ModelSerializer):
                   'tipo',
                   'idUsuario',
                   ]
+
+class getCategoryTotalSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Investimentos
+        fields = ['id',
+                  'valor',
+                  'data',
+                  'idCategorias',
+                  'idUsuario',
+                  ]
