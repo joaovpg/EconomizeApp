@@ -148,6 +148,7 @@ export class TransacoesComponent implements OnInit {
     this.month = this.curdate.slice(5, 7);
 
     this.valorTotal = 0;
+    this.totalCategoria = 0;
     return this.getTransations(), this.getTotais(), this.getCategories();
   }
 
