@@ -13,10 +13,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   providers: [MessageService]
 })
 export class CadastroComponent implements OnInit {
-  // Icones do fontawesome
-  faGooglePlus = faGooglePlus;
-  faFacebook = faFacebook;
-
   // Modelo do usuário
   user: UserModel = new UserModel();
   // Captura a confirmação da senha
