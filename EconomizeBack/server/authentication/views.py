@@ -146,8 +146,10 @@ class RequestResetPasswordView(generics.GenericAPIView):
                 'redirect_url', 'password-reset-complete')
             absurl = 'http://'+current_site+relativeLink
 
-            email_body = 'Parece que você esqueceu sua senha \n\nUse o link abaixo para redefini-la\n\n' + \
-                absurl+'?redirect_url='+redirect_url
+            resetComplete = 'http://'+current_site+'/auth/password-reset-complete'
+
+            email_body = 'Parece que você esqueceu sua senha \n\nUse o primeiro link para pegar o código de redefinição e o segundo para redefinir sua senha\n\n Gere seu código: \n' + \
+                absurl + '\n\nFaça a alteração: \n' + resetComplete
 
             data = {'email_body': email_body, 'to_email': user.useremail,
                     'email_subject': '[Economize] Reset de senha'}

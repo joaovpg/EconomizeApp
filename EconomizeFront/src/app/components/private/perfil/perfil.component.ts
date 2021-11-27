@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.token.getAccessToken != undefined) {
+    if (this.token.getAccessToken != undefined || this.token.getAccessToken != null) {
       this.listUserData();
     } else {
       window.location.reload();
